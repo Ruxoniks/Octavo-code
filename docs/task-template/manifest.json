@@ -1,0 +1,18 @@
+{
+  "id": "my-task",
+  "chapter": "html",
+  "order": 99,
+  "type": "code",
+  "title": "Название задания",
+  "summary": "Одно предложение о том, чему учит задание.",
+  "difficulty": 2,
+  "estimateMin": 15,
+  "tags": ["html"],
+  "requires": [],
+  "editor": { "files": ["index.html", "style.css"], "readonly": ["style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Намёк: куда смотреть." },
+    { "level": 2, "text": "Конкретное направление: что именно сделать." },
+    { "level": 3, "text": "Почти готовый код." }
+  ]
+}

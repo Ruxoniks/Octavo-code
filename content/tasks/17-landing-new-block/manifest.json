@@ -1,0 +1,18 @@
+{
+  "id": "landing-new-block",
+  "chapter": "build",
+  "order": 5,
+  "type": "code",
+  "title": "Новый блок в чужом стиле",
+  "summary": "Допиши секцию «Как мы работаем» так, чтобы она выглядела как родная — теми же классами.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["практика", "компоненты"],
+  "requires": ["landing-bugfix"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Не придумывай новые классы: скопируй структуру секции .features и поменяй содержимое." },
+    { "level": 2, "text": "Каркас: <section class=\"steps\"><h2>Как мы работаем</h2><div class=\"cards\">…три article.card…</div></section>" },
+    { "level": 3, "text": "Карточка целиком: <article class=\"card\"><h3>1. Выбираете напиток</h3><p>Подскажем, если не знаете, чего хотите.</p></article>" }
+  ]
+}

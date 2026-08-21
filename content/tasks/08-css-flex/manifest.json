@@ -1,0 +1,18 @@
+{
+  "id": "css-flex",
+  "chapter": "css",
+  "order": 2,
+  "type": "code",
+  "title": "Блоки в ряд: flexbox",
+  "summary": "Поставить элементы в строку и разложить их по ширине — работа для flexbox.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["css", "layout"],
+  "requires": ["css-box-model"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "display: flex превращает элемент в контейнер: его прямые дети выстраиваются в строку." },
+    { "level": 2, "text": "gap задаёт расстояние между детьми — он удобнее, чем margin у каждого." },
+    { "level": 3, "text": ".row { display: flex; gap: 16px; } .row .card { flex: 1; }" }
+  ]
+}

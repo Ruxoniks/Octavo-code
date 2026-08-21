@@ -1,0 +1,29 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background-color: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.5;
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+
+p {
+  margin: 0;
+  color: #4d5b6b;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #d6dee7;
+  border-radius: 12px;
+}
+
+.row {
+  /* Сейчас карточки идут друг под другом. Исправь это. */
+}

@@ -1,0 +1,19 @@
+{
+  "id": "client-coffee",
+  "chapter": "build",
+  "order": 6,
+  "type": "code",
+  "title": "Заказ: страница кофейни",
+  "summary": "Первый заказчик со своим ТЗ, чек-листом приёмки и правкой в середине работы.",
+  "difficulty": 4,
+  "estimateMin": 45,
+  "tags": ["заказчик", "практика"],
+  "requires": ["landing-new-block"],
+  "client": "coffee",
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Начни со структуры: <header> с названием и временем работы, <main> с причинами, <footer> с телефоном и картой. Оформление — потом." },
+    { "level": 2, "text": "Телефон: <a href=\"tel:+79990000000\">+7 999 000-00-00</a>. Карта: обычная ссылка с текстом «Мы на карте»." },
+    { "level": 3, "text": "Кнопка брони — это ссылка с классом: <a class=\"book\" href=\"tel:+79990000000\">Забронировать стол</a>, а в CSS ей задают сливовый background-color и padding." }
+  ]
+}

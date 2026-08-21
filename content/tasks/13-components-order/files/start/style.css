@@ -1,0 +1,31 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  background-color: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.5;
+}
+
+.block {
+  padding: 28px 24px;
+  border-bottom: 1px solid #d6dee7;
+}
+
+.block h2 {
+  margin: 0 0 6px;
+  font-size: 20px;
+}
+
+.block p {
+  margin: 0;
+  color: #4d5b6b;
+}
+
+.block--header { background: #1b2530; color: #fff; padding: 16px 24px; }
+.block--header h2 { font-size: 17px; }
+.block--header p { color: #9fb0c3; }
+.block--hero { background: #dff0ff; padding: 56px 24px; }
+.block--hero h2 { font-size: 30px; }
+.block--reviews { background: #fff; }
+.block--footer { background: #1b2530; color: #fff; }
+.block--footer p { color: #9fb0c3; }

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Структура проекта</title>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; padding: 24px; background: #fff9e4; color: #3a2b33; }
+      h2 { font-size: 16px; margin: 0 0 8px; }
+      .cols { display: flex; gap: 24px; flex-wrap: wrap; }
+      pre { background: #fffdf4; border: 1px solid #ddcda9; border-radius: 10px; padding: 14px; font-size: 13px; }
+      .good { border-left: 4px solid #4f6a4a; }
+      .bad { border-left: 4px solid #a3563f; }
+      p { color: #61564f; font-size: 13px; max-width: 60ch; }
+    </style>
+  </head>
+  <body>
+    <div class="cols">
+      <div>
+        <h2>Так вырастает само</h2>
+        <pre class="bad">my-site/
+  index.html
+  about.html
+  style.css
+  script.js
+  logo.png
+  photo-cafe.jpg
+  node_modules/
+  README.md</pre>
+      </div>
+
+      <div>
+        <h2>Так проект остаётся понятным</h2>
+        <pre class="good">my-site/
+  index.html
+  about.html
+  README.md
+  styles/
+    style.css
+  scripts/
+    script.js
+  assets/
+    logo.png
+    photo-cafe.jpg</pre>
+      </div>
+    </div>
+
+    <p>
+      Правило простое: в корне — точка входа и то, что читает человек. Всё остальное разложено
+      по папкам с говорящими именами. Через полгода вернёшься к проекту и найдёшь нужное за секунду.
+    </p>
+  </body>
+</html>

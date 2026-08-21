@@ -1,0 +1,180 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  line-height: var(--lh);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--lh-display);
+  color: var(--plum-deep);
+  margin: 0 0 var(--sp-3);
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--display-md); }
+h2 { font-size: var(--display-sm); }
+h3 { font-size: var(--fs-lg); font-weight: 600; }
+
+p,
+ul,
+ol {
+  margin: 0 0 var(--sp-3);
+}
+
+a {
+  color: var(--plum);
+  text-underline-offset: 3px;
+}
+
+code,
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--paper-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1px 5px;
+}
+
+pre {
+  background: var(--paper-sunk);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--sp-3);
+  overflow: auto;
+  font-size: var(--fs-sm);
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ---------- Кнопки ---------- */
+button {
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--plum-deep);
+  background: var(--paper-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2) var(--sp-3);
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease, transform 0.08s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--paper-sunk);
+  border-color: var(--plum);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.primary {
+  background: var(--plum);
+  border-color: var(--plum-deep);
+  color: var(--on-plum);
+  font-weight: 600;
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--plum-deep);
+}
+
+button.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+
+button.ghost:hover:not(:disabled) {
+  background: var(--plum-veil);
+  border-color: transparent;
+  color: var(--plum-deep);
+}
+
+/* ---------- Поля ввода ---------- */
+input[type='text'],
+input[type='password'],
+textarea,
+select {
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-2);
+  width: 100%;
+}
+
+textarea {
+  font-family: var(--font-mono);
+  resize: vertical;
+}
+
+:focus-visible {
+  outline: 2px solid var(--plum);
+  outline-offset: 2px;
+}
+
+/* ---------- Мелочи ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.muted { color: var(--muted); }
+.tiny { font-size: var(--fs-xs); }
+
+.caps {
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-sunk);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 999px;
+  border: 2px solid var(--paper-sunk);
+}

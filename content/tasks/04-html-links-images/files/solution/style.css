@@ -1,0 +1,19 @@
+/* Готовые стили. Открыты для экспериментов. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 160px;
+  display: block;
+  margin: 16px 0;
+}
+
+a {
+  color: #0969da;
+}

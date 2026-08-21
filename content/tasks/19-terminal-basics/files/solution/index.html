@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Сессия терминала</title>
+  </head>
+  <body>
+    <script id="session" type="application/json">
+      {
+        "cwd": "/home/user/site",
+        "home": "/home/user",
+        "fs": {
+          "/": { "type": "dir" },
+          "/home": { "type": "dir" },
+          "/home/user": { "type": "dir" },
+          "/home/user/site": { "type": "dir" },
+          "/home/user/site/styles": { "type": "dir" },
+          "/home/user/site/scripts": { "type": "dir" },
+          "/home/user/site/assets": { "type": "dir" },
+          "/home/user/site/index.html": { "type": "file", "content": "" },
+          "/home/user/site/README.md": { "type": "file", "content": "" },
+          "/home/user/site/styles/style.css": { "type": "file", "content": "" },
+          "/home/user/site/scripts/app.js": { "type": "file", "content": "" }
+        },
+        "git": { "initialized": false, "branch": "master", "staged": [], "commits": [], "pushed": false },
+        "pasted": { "node -v": "v22.11.0", "npm -v": "10.9.0" },
+        "history": [
+          "mkdir site",
+          "cd site",
+          "mkdir -p styles scripts assets",
+          "touch index.html README.md",
+          "touch styles/style.css scripts/app.js"
+        ]
+      }
+    </script>
+  </body>
+</html>

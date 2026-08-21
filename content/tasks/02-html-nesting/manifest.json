@@ -1,0 +1,18 @@
+{
+  "id": "html-nesting",
+  "chapter": "html",
+  "order": 1,
+  "type": "code",
+  "title": "Вложенность и структура",
+  "summary": "Теги лежат друг в друге, как коробки. Соберём страницу из шапки, основной части и подвала.",
+  "difficulty": 2,
+  "estimateMin": 15,
+  "tags": ["html", "структура"],
+  "requires": ["html-first-tags"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Теги вкладываются так: <header><h1>Заголовок</h1></header>. Внутренний тег должен закрыться раньше внешнего." },
+    { "level": 2, "text": "Список — это <ul> с пунктами <li> внутри: <ul><li>Первый</li><li>Второй</li></ul>." },
+    { "level": 3, "text": "Каркас: <header><h1>…</h1></header><main><p>…</p><ul><li>…</li></ul></main><footer>…</footer>" }
+  ]
+}

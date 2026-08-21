@@ -1,0 +1,41 @@
+{
+  "id": "github-push",
+  "chapter": "tools",
+  "order": 3,
+  "type": "terminal",
+  "title": "Проект на GitHub",
+  "summary": "remote, branch -M main и первый push: код уезжает с твоего ноутбука в интернет.",
+  "difficulty": 3,
+  "estimateMin": 30,
+  "tags": ["git", "github"],
+  "requires": ["git-local"],
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "cwd": "/home/user/site",
+    "files": {
+      "/home/user/site": { "type": "dir" },
+      "/home/user/site/.git": { "type": "dir" },
+      "/home/user/site/index.html": { "type": "file", "content": "<!doctype html>" },
+      "/home/user/site/README.md": { "type": "file", "content": "# Мой сайт" }
+    },
+    "git": {
+      "initialized": true,
+      "branch": "master",
+      "commits": [{ "message": "Первая версия сайта", "files": ["README.md", "index.html"] }]
+    },
+    "paste": [
+      {
+        "command": "адрес репозитория",
+        "label": "Ссылка на твой репозиторий на GitHub:",
+        "pattern": "^https://github[.]com/[A-Za-z0-9-]+/[A-Za-z0-9._-]+",
+        "hint": "Адрес страницы репозитория, а не клона: https://github.com/имя-пользователя/имя-репозитория"
+      }
+    ]
+  },
+  "hints": [
+    { "level": 1, "text": "Три команды по порядку: remote add, branch -M, push. Если забыл адрес — посмотри git remote -v." },
+    { "level": 2, "text": "origin — это просто имя для адреса. Можно было бы назвать иначе, но так делают все, и в инструкциях везде origin." },
+    { "level": 3, "text": "git remote add origin https://github.com/user/site.git → git branch -M main → git push -u origin main" }
+  ]
+}

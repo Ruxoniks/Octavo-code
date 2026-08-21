@@ -1,0 +1,18 @@
+{
+  "id": "files-roundtrip",
+  "chapter": "html",
+  "order": 4,
+  "type": "code",
+  "title": "Файлы на своём компьютере",
+  "summary": "Скачай проект, отредактируй его в любом редакторе и верни обратно перетаскиванием.",
+  "difficulty": 2,
+  "estimateMin": 20,
+  "tags": ["файлы", "инструменты"],
+  "requires": ["html-links-images"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Кнопки «Скачать файл» и «Скачать проект (ZIP)» — в левой колонке, под подсказками." },
+    { "level": 2, "text": "Открыть .html можно чем угодно: «Блокнот», TextEdit, VS Code, Notepad++. Главное — сохранить в UTF-8 и не переименовывать файл." },
+    { "level": 3, "text": "Нужный кусок выглядит так: <section class=\"about\"><h2>Обо мне</h2><p>Пара предложений…</p></section>" }
+  ]
+}

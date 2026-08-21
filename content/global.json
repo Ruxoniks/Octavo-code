@@ -1,0 +1,36 @@
+{
+  "editor": {
+    "files": [],
+    "readonly": [],
+    "tabSize": 2,
+    "wrap": true
+  },
+  "preview": {
+    "entry": "index.html",
+    "autorun": true,
+    "timeoutMs": 3000,
+    "mascot": {
+      "mode": "off",
+      "target": ".step",
+      "maxRise": 90,
+      "maxGap": 140
+    }
+  },
+  "hints": {
+    "maxLevels": 3,
+    "allowSolution": true
+  },
+  "ai": {
+    "enabled": true,
+    "byokEnabled": true,
+    "chatLinks": [
+      { "label": "Claude", "url": "https://claude.ai/new" },
+      { "label": "ChatGPT", "url": "https://chat.openai.com/" },
+      { "label": "DeepSeek", "url": "https://chat.deepseek.com/" }
+    ]
+  },
+  "links": {
+    "github": "https://github.com/Ruxoniks/Octavo-code"
+  },
+  "mascot": { "speed": 1 }
+}

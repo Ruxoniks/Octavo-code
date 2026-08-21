@@ -1,0 +1,26 @@
+/* Твой файл стилей. Пиши правила здесь. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background-color: #f7f9fb;
+  line-height: 1.6;
+}
+
+#hero {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+/* 1. Покрась h1 */
+
+/* 2. Дай фон элементам .tag */
+
+/* 3. Задай фон блоку #hero */

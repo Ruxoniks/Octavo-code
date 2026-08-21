@@ -1,0 +1,37 @@
+/* Стили подсвечивают границы блоков, чтобы вложенность была видна.
+   Файл открыт: можно менять, «Начать заново» вернёт исходный вариант. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.6;
+}
+
+header,
+main,
+footer {
+  border: 2px dashed #b8c4d0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+header::before,
+main::before,
+footer::before {
+  content: attr(data-label);
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: #f7f9fb;
+  padding: 0 6px;
+  font-size: 12px;
+  color: #7d8a99;
+}
+
+header { border-color: #1a7f37; }
+main { border-color: #0969da; }
+footer { border-color: #9a6700; }

@@ -1,0 +1,35 @@
+{
+  "id": "git-local",
+  "chapter": "tools",
+  "order": 2,
+  "type": "terminal",
+  "title": "Git: снимки проекта",
+  "summary": "init, status, add, commit, log — четыре команды, которые спасают работу от «а где вчерашняя версия».",
+  "difficulty": 3,
+  "estimateMin": 30,
+  "tags": ["git", "инструменты"],
+  "requires": ["terminal-basics"],
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "cwd": "/home/user/site",
+    "files": {
+      "/home/user/site": { "type": "dir" },
+      "/home/user/site/index.html": { "type": "file", "content": "<!doctype html>" },
+      "/home/user/site/README.md": { "type": "file", "content": "# Мой сайт" }
+    },
+    "paste": [
+      {
+        "command": "git --version",
+        "label": "Что ответила твоя консоль на",
+        "pattern": "^git version [0-9]+",
+        "hint": "Ожидается «git version 2.45.0» или похожее. Если команда не найдена — поставь git с git-scm.com и открой терминал заново."
+      }
+    ]
+  },
+  "hints": [
+    { "level": 1, "text": "Сначала git init — без него любая другая команда git скажет «not a git repository»." },
+    { "level": 2, "text": "git status показывает файлы, которые git ещё не отслеживает. Добавить все сразу: git add ." },
+    { "level": 3, "text": "Полный набор: git init → git status → git add . → git commit -m \"Первая версия сайта\" → git log" }
+  ]
+}

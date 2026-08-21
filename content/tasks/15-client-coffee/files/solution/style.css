@@ -1,0 +1,75 @@
+:root {
+  --brand: #5f3f54;
+  --surface: #ffffff;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background-color: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.5;
+}
+
+.hero {
+  background: #dff0ff;
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  color: var(--brand);
+}
+
+.hours {
+  margin: 0 0 16px;
+  font-size: 18px;
+}
+
+.book {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: var(--brand);
+  color: var(--surface);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.benefits {
+  display: flex;
+  gap: 16px;
+}
+
+.benefit {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid #d6dee7;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.benefit h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.benefit p {
+  margin: 0;
+  color: #4d5b6b;
+}
+
+footer {
+  margin-top: 32px;
+  border-top: 1px solid #d6dee7;
+  padding-top: 16px;
+}
+
+.phone {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+}

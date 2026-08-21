@@ -1,0 +1,35 @@
+{
+  "id": "terminal-basics",
+  "chapter": "tools",
+  "order": 1,
+  "type": "terminal",
+  "title": "Консоль и Node.js",
+  "summary": "Собери структуру проекта командами и поставь себе Node — дальше без него никуда.",
+  "difficulty": 3,
+  "estimateMin": 30,
+  "tags": ["консоль", "инструменты"],
+  "requires": ["project-structure"],
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "paste": [
+      {
+        "command": "node -v",
+        "label": "Что ответила твоя консоль на",
+        "pattern": "^v?[0-9]+[.][0-9]+[.][0-9]+",
+        "hint": "Ожидается что-то вроде v22.11.0. Если пишет «command not found» — установи Node LTS с nodejs.org и открой терминал заново."
+      },
+      {
+        "command": "npm -v",
+        "label": "Что ответила твоя консоль на",
+        "pattern": "^[0-9]+[.][0-9]+[.][0-9]+",
+        "hint": "npm ставится вместе с Node, отдельно скачивать не нужно. Ожидается что-то вроде 10.9.0."
+      }
+    ]
+  },
+  "hints": [
+    { "level": 1, "text": "Начни с mkdir site и cd site. Проверить, где ты находишься, всегда можно командой pwd." },
+    { "level": 2, "text": "Три папки одной строкой: mkdir -p styles scripts assets. Флаг -p не ругается, если чего-то по пути не хватает." },
+    { "level": 3, "text": "Полный набор: mkdir site → cd site → mkdir -p styles scripts assets → touch index.html README.md → touch styles/style.css scripts/app.js" }
+  ]
+}

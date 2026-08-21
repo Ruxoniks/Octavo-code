@@ -1,0 +1,18 @@
+{
+  "id": "landing-bugfix",
+  "chapter": "build",
+  "order": 4,
+  "type": "code",
+  "title": "Лендинг с багами",
+  "summary": "Готовая страница, в которой сломано пять вещей. Найди и почини — по подсказкам проверок.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["практика", "отладка"],
+  "requires": ["components-order"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Начни с превью: одна карточка съехала внутрь соседней, все три идут в столбик, а кнопка никуда не ведёт." },
+    { "level": 2, "text": "Четыре бага в index.html (закрывающий тег, имя класса, атрибут картинки, адрес ссылки) и один в style.css." },
+    { "level": 3, "text": "Ищи: потерянный </article> у второй карточки, class=\"featurs\" вместо features, <img> без alt, href=\"#\" и .cards без display: flex." }
+  ]
+}

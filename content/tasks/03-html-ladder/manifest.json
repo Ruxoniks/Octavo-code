@@ -1,0 +1,19 @@
+{
+  "id": "html-ladder",
+  "chapter": "html",
+  "order": 2,
+  "type": "code",
+  "title": "Лесенка для курсора",
+  "summary": "Собери из тегов лесенку, по которой курсор доберётся до кнопки наверху. Пропустишь ступеньку — он застрянет.",
+  "difficulty": 2,
+  "estimateMin": 15,
+  "tags": ["html", "классы", "курсор"],
+  "requires": ["html-nesting"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "preview": { "mascot": { "mode": "ladder", "target": ".step", "maxRise": 90, "maxGap": 140, "goal": ".goal" } },
+  "hints": [
+    { "level": 1, "text": "Ступенька — это <div> с двумя классами: общим step и номерным step--1. Классы пишутся в одном атрибуте через пробел: class=\"step step--1\"." },
+    { "level": 2, "text": "Ступенек нужно пять, с номерами подряд: step--1, step--2, step--3, step--4, step--5. Если номер пропустить, между ступеньками будет слишком большой разрыв." },
+    { "level": 3, "text": "Одна строка выглядит так: <div class=\"step step--3\">3</div>. Остальные — то же самое с другими номерами." }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "deploy-pages",
+  "chapter": "tools",
+  "order": 4,
+  "type": "terminal",
+  "title": "Сайт в интернете",
+  "summary": "Включи GitHub Pages и научись обновлять живой сайт одним git push.",
+  "difficulty": 3,
+  "estimateMin": 35,
+  "tags": ["деплой", "github"],
+  "requires": ["github-push"],
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "cwd": "/home/user/site",
+    "files": {
+      "/home/user/site": { "type": "dir" },
+      "/home/user/site/.git": { "type": "dir" },
+      "/home/user/site/index.html": { "type": "file", "content": "<!doctype html>" },
+      "/home/user/site/README.md": { "type": "file", "content": "# Мой сайт" }
+    },
+    "git": {
+      "initialized": true,
+      "branch": "main",
+      "commits": [{ "message": "Первая версия сайта", "files": ["README.md", "index.html"] }],
+      "remote": "https://github.com/user/site.git",
+      "pushed": true
+    },
+    "paste": [
+      {
+        "command": "адрес опубликованного сайта",
+        "label": "Ссылка на твой сайт после включения Pages:",
+        "pattern": "^https://[A-Za-z0-9-]+[.]github[.]io/",
+        "hint": "Адрес показан в Settings → Pages сразу после сборки. Домен именно github.io, а не github.com."
+      }
+    ]
+  },
+  "hints": [
+    { "level": 1, "text": "Pages включается в настройках репозитория, а не командой. Ветка main, папка / (root)." },
+    { "level": 2, "text": "Изменить файл в симуляторе можно так: echo \"текст\" >> README.md — двойная стрелка дописывает в конец." },
+    { "level": 3, "text": "Порядок: echo \"Опубликован на GitHub Pages\" >> README.md → git add . → git commit -m \"Добавил описание в README\" → git push" }
+  ]
+}

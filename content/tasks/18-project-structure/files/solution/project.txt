@@ -1,0 +1,9 @@
+my-site/
+  index.html
+  about.html
+  style.css
+  script.js
+  logo.png
+  photo-cafe.jpg
+  node_modules/
+  README.md

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Сессия терминала</title>
+  </head>
+  <body>
+    <script id="session" type="application/json">
+      {
+        "cwd": "/home/user/site",
+        "home": "/home/user",
+        "fs": {
+          "/": { "type": "dir" },
+          "/home": { "type": "dir" },
+          "/home/user": { "type": "dir" },
+          "/home/user/site": { "type": "dir" },
+          "/home/user/site/.git": { "type": "dir" },
+          "/home/user/site/index.html": { "type": "file", "content": "<!doctype html>" },
+          "/home/user/site/README.md": { "type": "file", "content": "# Мой сайт\nОпубликован на GitHub Pages" }
+        },
+        "git": {
+          "initialized": true,
+          "branch": "main",
+          "staged": [],
+          "commits": [
+            { "message": "Первая версия сайта", "files": ["README.md", "index.html"] },
+            { "message": "Добавил описание в README", "files": ["README.md"] }
+          ],
+          "remote": "https://github.com/user/site.git",
+          "pushed": true
+        },
+        "pasted": { "адрес опубликованного сайта": "https://user.github.io/site/" },
+        "history": [
+          "echo \"Опубликован на GitHub Pages\" >> README.md",
+          "git add .",
+          "git commit -m \"Добавил описание в README\"",
+          "git push"
+        ]
+      }
+    </script>
+  </body>
+</html>

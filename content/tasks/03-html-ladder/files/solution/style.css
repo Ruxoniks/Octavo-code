@@ -1,0 +1,51 @@
+/* Готовые стили. В этом задании работаем с HTML, но покрутить цвета никто не запрещает —
+   «Начать заново» вернёт исходный вариант. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: linear-gradient(#fff9e4, #f6edd2);
+  color: #3a2b33;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 16px;
+}
+
+.ladder {
+  position: relative;
+  height: 420px;
+  border-bottom: 6px solid #5f3f54;
+  background: transparent;
+}
+
+.step {
+  position: absolute;
+  width: 90px;
+  height: 22px;
+  border-radius: 6px;
+  background: #5f3f54;
+  color: #fff9e4;
+  font: 12px/22px system-ui, sans-serif;
+  text-align: center;
+}
+
+.step--1 { bottom: 20px;  left: 20px;  }
+.step--2 { bottom: 90px;  left: 100px; }
+.step--3 { bottom: 160px; left: 180px; }
+.step--4 { bottom: 230px; left: 260px; }
+.step--5 { bottom: 300px; left: 340px; }
+
+.goal {
+  position: absolute;
+  bottom: 340px;
+  left: 330px;
+  font: 600 13px/1 system-ui, sans-serif;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #3d2837;
+  background: #a3563f;
+  color: #fff9e4;
+  cursor: pointer;
+}

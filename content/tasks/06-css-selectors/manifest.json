@@ -1,0 +1,17 @@
+{
+  "id": "css-selectors",
+  "chapter": "css",
+  "order": 0,
+  "type": "code",
+  "title": "Селекторы и цвета",
+  "summary": "CSS отвечает на вопрос «как это выглядит». Научимся выбирать элементы по тегу, классу и id.",
+  "difficulty": 2,
+  "estimateMin": 15,
+  "tags": ["css", "селекторы"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Правило CSS выглядит так: селектор { свойство: значение; }. Точка с запятой в конце каждой строки обязательна." },
+    { "level": 2, "text": "h1 — выбор по тегу, .tag — по классу (точка), #hero — по id (решётка). Класс можно повесить на много элементов, id — только на один." },
+    { "level": 3, "text": "Например: h1 { color: #1a7f37; } .tag { background-color: #ffd666; } #hero { background-color: #dff0ff; }" }
+  ]
+}

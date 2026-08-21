@@ -1,0 +1,17 @@
+{
+  "id": "js-first-script",
+  "chapter": "build",
+  "order": 0,
+  "type": "code",
+  "title": "Первый скрипт",
+  "summary": "JavaScript отвечает за поведение: нажали кнопку — что-то произошло.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["js", "события"],
+  "editor": { "files": ["app.js", "index.html", "style.css"], "primary": "app.js" },
+  "hints": [
+    { "level": 1, "text": "Найти элемент по id: const button = document.querySelector('#toggle');" },
+    { "level": 2, "text": "Повесить обработчик: button.addEventListener('click', function () { … }); Код внутри выполнится при каждом нажатии." },
+    { "level": 3, "text": "Менять текст элемента можно так: status.textContent = 'Открыто'; Не забудь запомнить состояние в переменной, чтобы переключать его туда-обратно." }
+  ]
+}

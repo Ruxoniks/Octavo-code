@@ -1,0 +1,19 @@
+{
+  "id": "css-ladder",
+  "chapter": "css",
+  "order": 3,
+  "type": "code",
+  "title": "Ступеньки на CSS",
+  "summary": "Ступеньки на месте, но лежат кучей. Расставь их сам — координатами в CSS.",
+  "difficulty": 4,
+  "estimateMin": 25,
+  "tags": ["css", "позиционирование", "курсор"],
+  "requires": ["css-flex"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "preview": { "mascot": { "mode": "ladder", "target": ".step", "maxRise": 90, "maxGap": 140, "goal": ".goal" } },
+  "hints": [
+    { "level": 1, "text": "position: absolute у ступеньки считает координаты от ближайшего родителя с position: relative — то есть от .ladder." },
+    { "level": 2, "text": "bottom — расстояние от низа контейнера, left — от левого края. Чем больше bottom, тем выше ступенька." },
+    { "level": 3, "text": "Например: .step--1 { bottom: 20px; left: 20px; } .step--2 { bottom: 90px; left: 110px; } — и так далее с шагом не больше 90px по высоте." }
+  ]
+}

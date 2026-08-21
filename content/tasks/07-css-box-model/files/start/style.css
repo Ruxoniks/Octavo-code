@@ -1,0 +1,23 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 24px;
+  background-color: #f7f9fb;
+  color: #1b2530;
+  line-height: 1.5;
+}
+
+h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+p {
+  margin: 0;
+  color: #4d5b6b;
+}
+
+.card {
+  background: #fff;
+  /* Здесь не хватает padding, border, border-radius и margin-bottom */
+}

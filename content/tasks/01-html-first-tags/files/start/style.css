@@ -1,0 +1,19 @@
+/* Этот файл уже готов. Менять не обязательно, но можно: это твоя песочница.
+   «Начать заново» вернёт исходный вариант. */
+body {
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 32px;
+  color: #1b2530;
+  background: #f7f9fb;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #1a7f37;
+  margin-top: 0;
+}
+
+p {
+  max-width: 60ch;
+}
