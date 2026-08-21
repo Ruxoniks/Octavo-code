@@ -1,9 +1,8 @@
-import { exportProgress, getState, importProgress, resetProgress, setSetting } from '../core/progress';
+import { exportProgress, importProgress, resetProgress } from '../core/progress';
 import { downloadText } from '../core/files';
 import { navigate } from '../core/router';
 import { t } from '../core/i18n';
 import { el } from './dom';
-import { applyTheme } from './layout';
 
 export function renderSettings(): HTMLElement {
   const fileInput = el('input', {
@@ -24,31 +23,10 @@ export function renderSettings(): HTMLElement {
     },
   }) as HTMLInputElement;
 
-  const themeButton = (theme: 'light' | 'dark', label: string): HTMLElement =>
-    el('button', {
-      class: (getState().settings.theme ?? 'light') === theme ? 'primary' : '',
-      text: label,
-      on: {
-        click: () => {
-          setSetting('theme', theme);
-          applyTheme();
-          navigate('/settings');
-        },
-      },
-    });
-
   const map = el(
     'div',
     { class: 'map settings' },
     el('h1', { text: t('settings.title') }),
-
-    el('h2', { text: t('settings.theme') }),
-    el(
-      'div',
-      { class: 'hints__actions' },
-      themeButton('light', t('settings.themeLight')),
-      themeButton('dark', t('settings.themeDark')),
-    ),
 
     el('h2', { text: t('settings.progress') }),
     el('p', {

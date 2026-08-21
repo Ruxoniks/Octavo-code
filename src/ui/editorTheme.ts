@@ -4,10 +4,11 @@ import { tags } from '@lezer/highlight';
 import type { Extension } from '@codemirror/state';
 
 /**
- * Тема редактора под бумагу и сливу.
+ * Тема редактора.
  *
- * Готовые тёмные темы здесь не годятся: редактор — часть страницы, а не
- * отдельное окно, и он должен читаться как продолжение листа бумаги.
+ * Готовые темы CodeMirror здесь не годятся: редактор — часть страницы, а не
+ * отдельное окно, поэтому все цвета берутся из общих токенов и он читается
+ * как продолжение листа.
  */
 const paperTheme = EditorView.theme(
   {
@@ -49,10 +50,10 @@ const paperTheme = EditorView.theme(
       color: 'var(--paper)',
     },
   },
-  { dark: false },
+  { dark: true },
 );
 
-// Цвета берутся из токенов: подсветка кода меняется вместе с темой.
+// Цвета берутся из токенов: правка tokens.css меняет и подсветку кода.
 const paperHighlight = HighlightStyle.define([
   { tag: [tags.comment, tags.lineComment, tags.blockComment], color: 'var(--syn-comment)', fontStyle: 'italic' },
   { tag: [tags.keyword, tags.controlKeyword, tags.moduleKeyword], color: 'var(--syn-keyword)', fontWeight: '600' },

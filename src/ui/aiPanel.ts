@@ -1,6 +1,5 @@
-import { askClaude, buildPrompt, parseAiResponse } from '../core/ai';
+import { buildPrompt, parseAiResponse } from '../core/ai';
 import { globalConfig } from '../core/registry';
-import { getState, setSetting } from '../core/progress';
 import type { ResolvedTask } from '../core/types';
 import { t } from '../core/i18n';
 import { el, modal } from './dom';
@@ -115,50 +114,9 @@ ${prompt.body}`;
       links,
     ),
     el('div', { class: 'ai__step' }, el('h3', { text: t('ai.step2') }), answerArea, parseButton, status),
-    globalConfig.ai.byokEnabled ? byokSection(promptArea, answerArea) : null,
   );
 
   const close = modal(t('ai.title'), body, [
     el('button', { text: t('common.close'), on: { click: () => close() } }),
   ]);
-}
-
-/** Необязательный прямой вызов Claude с ключом самого ученика. */
-function byokSection(promptArea: HTMLTextAreaElement, answerArea: HTMLTextAreaElement): HTMLElement {
-  const keyInput = el('input', {
-    type: 'password',
-    placeholder: 'sk-ant-…',
-    value: getState().settings.aiKey ?? '',
-  }) as HTMLInputElement;
-
-  const sendButton = el('button', {
-    text: t('ai.send'),
-    on: {
-      click: async () => {
-        const key = keyInput.value.trim();
-        if (!key) return;
-        setSetting('aiKey', key);
-        sendButton.disabled = true;
-        sendButton.textContent = t('ai.sending');
-        try {
-          answerArea.value = await askClaude(key, promptArea.value);
-        } catch (error) {
-          answerArea.value = `${t('common.error')}: ${(error as Error).message}`;
-        } finally {
-          sendButton.disabled = false;
-          sendButton.textContent = t('ai.send');
-        }
-      },
-    },
-  }) as HTMLButtonElement;
-
-  return el(
-    'div',
-    { class: 'ai__step' },
-    el('h3', { text: t('ai.byok') }),
-    el('p', { class: 'tiny muted', text: t('ai.byokHint') }),
-    keyInput,
-    el('div', { style: 'height:8px' }),
-    sendButton,
-  );
 }

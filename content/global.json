@@ -22,7 +22,6 @@
   },
   "ai": {
     "enabled": true,
-    "byokEnabled": true,
     "chatLinks": [
       { "label": "Claude", "url": "https://claude.ai/new" },
       { "label": "ChatGPT", "url": "https://chat.openai.com/" },

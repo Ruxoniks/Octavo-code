@@ -8,12 +8,10 @@ import type { ResolvedTask } from './types';
  * Смысл в том, чтобы научить ставить задачу и проверять результат, а не в том,
  * чтобы спрятать нейросеть за одной кнопкой.
  *
- * Опционально можно подключить собственный ключ Anthropic (BYOK) — тогда
- * запрос уходит прямо из браузера. Ключ хранится только в localStorage
- * пользователя, никакого общего ключа и никакого прокси в проекте нет.
+ * Ключей здесь нет намеренно: игра никуда не ходит по сети и ничего не просит
+ * ввести. Нейросетью ученик пользуется у себя — в браузере или на своём
+ * компьютере, — и это часть навыка, а не обходной путь.
  */
-
-export const DEFAULT_MODEL = 'claude-opus-5';
 
 export interface PromptContext {
   task: ResolvedTask;
@@ -117,25 +115,4 @@ function guessByLanguage(info: string, knownFiles: string[], seen: Set<string>):
   if (!extension) return undefined;
   const candidates = knownFiles.filter((f) => f.endsWith(extension) && !seen.has(f));
   return candidates.length === 1 ? candidates[0] : undefined;
-}
-
-/**
- * Необязательный прямой вызов Claude с ключом самого пользователя.
- * SDK подгружается динамически, чтобы он не попадал в основной бандл
- * тех, кто пользуется обычным копипастом.
- */
-export async function askClaude(apiKey: string, prompt: string, model = DEFAULT_MODEL): Promise<string> {
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
-
-  const response = await client.messages.create({
-    model,
-    max_tokens: 16000,
-    messages: [{ role: 'user', content: prompt }],
-  });
-
-  return response.content
-    .map((block) => (block.type === 'text' ? block.text : ''))
-    .join('\n')
-    .trim();
 }

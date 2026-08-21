@@ -4,6 +4,10 @@ import type { ProgressState, TaskProgress } from './types';
  * Прогресс живёт в localStorage — никакого сервера и никаких аккаунтов.
  * Чтобы прогресс всё же можно было перенести, есть экспорт и импорт JSON:
  * заодно это первое живое знакомство ученика с форматом JSON.
+ *
+ * Хранятся только пройденные задания и черновики кода. Ничего личного —
+ * ни ключей, ни настроек — сюда не пишется: старые файлы прогресса с полем
+ * settings читаются, но само поле отбрасывается при первом же сохранении.
  */
 
 const STORAGE_KEY = 'octavo-code:progress:v1';
@@ -11,7 +15,6 @@ const STORAGE_KEY = 'octavo-code:progress:v1';
 const emptyState = (): ProgressState => ({
   version: 1,
   tasks: {},
-  settings: {},
 });
 
 const emptyTask = (): TaskProgress => ({
@@ -21,19 +24,36 @@ const emptyTask = (): TaskProgress => ({
   solutionShown: false,
 });
 
+/** В сохранённом прогрессе нашлись поля старых версий — их надо стереть. */
+let needsCleanup = false;
+
 let state: ProgressState = load();
 const listeners = new Set<(s: ProgressState) => void>();
+
+// Ранние версии игры хранили здесь настройки и ключ от нейросети. Если такой
+// файл остался в браузере, переписываем хранилище сразу при запуске, а не
+// когда ученик в следующий раз что-нибудь пройдёт.
+if (needsCleanup) persist();
 
 function load(): ProgressState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return emptyState();
-    const parsed = JSON.parse(raw) as ProgressState;
-    if (parsed.version !== 1 || typeof parsed.tasks !== 'object') return emptyState();
-    return { ...emptyState(), ...parsed, settings: { ...emptyState().settings, ...parsed.settings } };
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (parsed.version !== 1 || typeof parsed.tasks !== 'object') {
+      needsCleanup = raw.length > 0;
+      return emptyState();
+    }
+    needsCleanup = Object.keys(parsed).some((key) => key !== 'version' && key !== 'tasks');
+    return sanitize(parsed as unknown as ProgressState);
   } catch {
     return emptyState();
   }
+}
+
+/** Берём из файла только то, что игра действительно хранит. */
+function sanitize(parsed: ProgressState): ProgressState {
+  return { version: 1, tasks: parsed.tasks ?? {} };
 }
 
 function persist(): void {
@@ -92,14 +112,6 @@ export function isDone(taskId: string): boolean {
   return getTaskProgress(taskId).status === 'done';
 }
 
-export function setSetting<K extends keyof ProgressState['settings']>(
-  key: K,
-  value: ProgressState['settings'][K],
-): void {
-  state.settings[key] = value;
-  persist();
-}
-
 export function exportProgress(): string {
   return JSON.stringify(state, null, 2);
 }
@@ -109,7 +121,7 @@ export function importProgress(json: string): void {
   if (parsed.version !== 1 || typeof parsed.tasks !== 'object') {
     throw new Error('Это не файл прогресса Octavo-code');
   }
-  state = { ...emptyState(), ...parsed, settings: { ...emptyState().settings, ...parsed.settings } };
+  state = sanitize(parsed);
   persist();
 }
 

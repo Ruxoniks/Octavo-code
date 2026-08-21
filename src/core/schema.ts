@@ -160,7 +160,6 @@ export const globalConfigSchema = z.object({
   hints: z.object({ maxLevels: z.number(), allowSolution: z.boolean() }),
   ai: z.object({
     enabled: z.boolean(),
-    byokEnabled: z.boolean(),
     chatLinks: z.array(z.object({ label: z.string(), url: z.string().url() })),
   }),
   mascot: z.object({ speed: z.number() }),

@@ -154,7 +154,6 @@ export interface GlobalConfig {
   hints: HintsConfig;
   ai: {
     enabled: boolean;
-    byokEnabled: boolean;
     chatLinks: { label: string; url: string }[];
   };
   mascot: { speed: number };
@@ -219,10 +218,6 @@ export interface TaskProgress {
 export interface ProgressState {
   version: 1;
   tasks: Record<string, TaskProgress>;
-  settings: {
-    theme?: 'light' | 'dark';
-    aiKey?: string;
-  };
 }
 
 export interface ClientPersona {
