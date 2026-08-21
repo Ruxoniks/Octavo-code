@@ -1,0 +1,66 @@
+/*
+  Оформление написано заранее и держится на смысловых тегах и классе .block.
+  В этом задании важна не красота, а сборка: порядок блоков и живое действие.
+*/
+:root {
+  --page: #f6f2ea;
+  --paper: #fffdf7;
+  --ink: #2f2a26;
+  --muted: #6b6157;
+  --accent: #a35a2a;
+  --line: #e4d9c6;
+  --sp: 18px;
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  padding: var(--sp);
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+header,
+main,
+footer {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 0 0 8px;
+}
+
+.block {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--sp);
+  margin-bottom: var(--sp);
+}
+
+button {
+  font: inherit;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--paper);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--ink);
+}
+
+footer {
+  color: var(--muted);
+  font-size: 14px;
+}

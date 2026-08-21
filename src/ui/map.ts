@@ -14,11 +14,13 @@ import { el } from './dom';
  * решает, с чего начать.
  */
 
-function typeLabel(type: string): string {
-  if (type === 'dnd') return 'блоки';
-  if (type === 'read') return 'чтение кода';
-  if (type === 'ai') return 'нейросеть';
-  if (type === 'terminal') return 'терминал';
+function typeLabel(manifest: ResolvedTask['manifest']): string {
+  // Итог главы важнее типа: человек должен видеть, что это контрольная точка.
+  if (manifest.tags?.includes('итог')) return 'итог главы';
+  if (manifest.type === 'dnd') return 'блоки';
+  if (manifest.type === 'read') return 'чтение кода';
+  if (manifest.type === 'ai') return 'нейросеть';
+  if (manifest.type === 'terminal') return 'терминал';
   return 'код';
 }
 
@@ -44,7 +46,7 @@ function taskCard(task: ResolvedTask): HTMLElement {
     el(
       'div',
       { class: 'task-card__top' },
-      el('span', { text: typeLabel(task.manifest.type) }),
+      el('span', { text: typeLabel(task.manifest) }),
       el('span', { style: 'flex:1' }),
       done ? el('span', { class: 'task-card__check', text: '✓' }) : null,
     ),

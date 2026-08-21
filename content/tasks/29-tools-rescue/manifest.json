@@ -1,0 +1,36 @@
+{
+  "id": "tools-rescue",
+  "chapter": "tools",
+  "order": 5,
+  "type": "terminal",
+  "title": "Чужая папка",
+  "summary": "Тебе передали проект в том виде, в каком он вырос сам. Разложить его по местам — твоя работа.",
+  "difficulty": 4,
+  "estimateMin": 30,
+  "tags": ["терминал", "git", "архитектура"],
+  "requires": ["deploy-pages"],
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "cwd": "/home/user/sait-final-2",
+    "files": {
+      "/home/user/sait-final-2": { "type": "dir" },
+      "/home/user/sait-final-2/style.css": { "type": "file", "content": "body { margin: 0 }" },
+      "/home/user/sait-final-2/script.js": { "type": "file", "content": "console.log('hi')" },
+      "/home/user/sait-final-2/logo.svg": { "type": "file", "content": "<svg></svg>" },
+      "/home/user/sait-final-2/foto-cafe.svg": { "type": "file", "content": "<svg></svg>" },
+      "/home/user/sait-final-2/new folder (2)": { "type": "dir" },
+      "/home/user/sait-final-2/new folder (2)/index.html": {
+        "type": "file",
+        "content": "<!doctype html><title>Кофейня</title>"
+      },
+      "/home/user/sait-final-2/node_modules": { "type": "dir" },
+      "/home/user/sait-final-2/node_modules/left-pad.js": { "type": "file", "content": "module.exports = 1" }
+    }
+  },
+  "hints": [
+    { "level": 1, "text": "Начни с ls и cd — сначала пойми, что где лежит. Папку «new folder (2)» в командах пиши в кавычках: \"new folder (2)\", иначе терминал решит, что это три разных слова." },
+    { "level": 2, "text": "Перемещает файлы команда mv: mv style.css styles/. Папку под неё сначала надо создать через mkdir. Пустую «new folder (2)» после переезда index.html можно удалить: rm -r." },
+    { "level": 3, "text": "Порядок такой: mkdir styles scripts assets → mv style.css styles → mv script.js scripts → mv logo.svg assets → mv foto-cafe.svg assets → mv \"new folder (2)/index.html\" . → rm -r \"new folder (2)\" → echo \"node_modules/\" > .gitignore → git init → git add . → git commit -m \"Разложил проект по папкам\"" }
+  ]
+}

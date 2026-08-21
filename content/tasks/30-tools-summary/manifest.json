@@ -1,0 +1,23 @@
+{
+  "id": "tools-summary",
+  "chapter": "tools",
+  "order": 6,
+  "type": "terminal",
+  "title": "Итог главы: от пустой папки до ссылки",
+  "summary": "Весь путь одним заходом: папка, структура, git, GitHub, опубликованный сайт.",
+  "difficulty": 4,
+  "estimateMin": 35,
+  "tags": ["терминал", "git", "итог"],
+  "requires": ["tools-rescue"],
+  "allowAi": false,
+  "editor": { "files": ["index.html"], "readonly": ["index.html"], "primary": "index.html" },
+  "terminal": {
+    "home": "/home/user",
+    "cwd": "/home/user"
+  },
+  "hints": [
+    { "level": 1, "text": "Ты стоишь в домашней папке, и здесь пусто. Первый шаг — создать папку проекта и зайти в неё: mkdir и cd." },
+    { "level": 2, "text": "Файлы создаются через touch, а текст в них пишется через echo \"…\" > файл. Ветку переименовывают до первого пуша: git branch -M main." },
+    { "level": 3, "text": "Полный путь: mkdir portfolio → cd portfolio → touch index.html README.md → mkdir styles → touch styles/style.css → echo \"node_modules/\" > .gitignore → git init → git add . → git commit -m \"Каркас проекта\" → изменить файл → git add . → git commit -m \"Добавил стили\" → git branch -M main → git remote add origin https://github.com/имя/portfolio.git → git push -u origin main" }
+  ]
+}

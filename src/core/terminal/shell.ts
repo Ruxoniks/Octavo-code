@@ -148,6 +148,27 @@ export function filesInside(state: ShellState, path: string): string[] {
     .sort();
 }
 
+/**
+ * Правила из .gitignore. Настоящий git понимает их куда больше, но ученику
+ * нужны ровно два случая: имя папки (node_modules/) и маска (*.log).
+ */
+export function ignoredBy(state: ShellState, path: string): (file: string) => boolean {
+  const source = state.fs[path + '/.gitignore']?.content ?? '';
+  const patterns = source
+    .split('\n')
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0 && !line.startsWith('#'))
+    .map((line) => line.replace(/^\.\//, '').replace(/\/$/, ''));
+
+  if (!patterns.length) return () => false;
+
+  return (file: string): boolean =>
+    patterns.some((pattern) => {
+      if (pattern.startsWith('*.')) return file.endsWith(pattern.slice(1));
+      return file === pattern || file.startsWith(pattern + '/') || file.includes('/' + pattern + '/');
+    });
+}
+
 // ---------- разбор строки ----------
 
 export function tokenize(input: string): string[] {
@@ -188,6 +209,7 @@ const HELP = [
   '  touch <файл>           создать пустой файл',
   '  cat <файл>             показать содержимое файла',
   '  echo "текст" > файл    записать текст в файл',
+  '  mv <откуда> <куда>     переместить или переименовать',
   '  rm [-r] <путь>         удалить файл или папку',
   '  node -v / npm -v       проверить, что установлено',
   '  git ...                init, status, add, commit, log, branch, remote, push, pull, clone',
@@ -296,6 +318,45 @@ export function runCommand(previous: ShellState, input: string): CommandResult {
       return ok(state);
     }
 
+    case 'mv': {
+      const paths = args.filter((arg) => !arg.startsWith('-'));
+      if (paths.length < 2) {
+        return fail(state, 'mv: нужно два пути — что перемещаем и куда. Например: mv style.css styles/');
+      }
+
+      const from = resolvePath(state, paths[0]);
+      const source = state.fs[from];
+      if (!source) return fail(state, `mv: ${paths[0]}: нет такого файла или папки`);
+
+      // Если цель — существующая папка, файл кладётся внутрь неё под своим именем.
+      // Иначе это переименование: путь целиком становится новым именем.
+      const target = resolvePath(state, paths[1]);
+      const intoDir = state.fs[target]?.type === 'dir';
+      const to = intoDir ? `${target === '/' ? '' : target}/${baseName(from)}` : target;
+
+      if (from === to) return ok(state);
+      if (to.startsWith(from + '/')) {
+        return fail(state, `mv: ${paths[0]}: папку нельзя переместить внутрь самой себя`);
+      }
+      if (state.fs[to]) return fail(state, `mv: ${paths[1]}: тут уже есть «${baseName(to)}»`);
+      if (!state.fs[parentOf(to)]) {
+        return fail(state, `mv: ${paths[1]}: нет такой папки. Сначала создай её: mkdir ${baseName(parentOf(to))}`);
+      }
+
+      // Папку переносим вместе со всем, что внутри.
+      for (const key of Object.keys(state.fs)) {
+        if (key !== from && !key.startsWith(from + '/')) continue;
+        state.fs[to + key.slice(from.length)] = state.fs[key];
+        delete state.fs[key];
+      }
+
+      if (state.cwd === from || state.cwd.startsWith(from + '/')) {
+        state.cwd = to + state.cwd.slice(from.length);
+      }
+
+      return ok(state);
+    }
+
     case 'rm': {
       const recursive = args.some((arg) => arg === '-r' || arg === '-rf' || arg === '-fr');
       const raw = args.find((arg) => !arg.startsWith('-'));
@@ -352,7 +413,8 @@ function runGit(state: ShellState, args: string[]): CommandResult {
     }
 
     case 'status': {
-      const all = filesInside(state, state.cwd);
+      const ignored = ignoredBy(state, state.cwd);
+      const all = filesInside(state, state.cwd).filter((file) => !ignored(file));
       const staged = state.git.staged;
       const tracked = (file: string): boolean => file in state.git.snapshot;
       const rest2 = all.filter((file) => !staged.includes(file));
@@ -382,7 +444,9 @@ function runGit(state: ShellState, args: string[]): CommandResult {
     case 'add': {
       const target = rest[0];
       if (!target) return fail(state, 'Nothing specified, nothing added.\nОбычно пишут git add . — добавить всё.');
-      const all = filesInside(state, state.cwd);
+      // Файлы из .gitignore git не видит вовсе — ни в add, ни в status.
+      const ignored = ignoredBy(state, state.cwd);
+      const all = filesInside(state, state.cwd).filter((file) => !ignored(file));
       // Изменённым считается файл, содержимое которого разошлось со снимком
       // последнего коммита — как и в настоящем git.
       const changed = all.filter((file) => state.git.snapshot[file] !== contentOf(state, file));

@@ -1,0 +1,22 @@
+{
+  "id": "css-card",
+  "chapter": "css",
+  "order": 5,
+  "type": "code",
+  "title": "Карточка по правилам",
+  "summary": "Разметка готова, оформления нет. Зато есть пять ограничений, внутри которых надо уместиться.",
+  "difficulty": 4,
+  "estimateMin": 25,
+  "tags": ["css", "переменные", "flex"],
+  "requires": ["css-variables"],
+  "editor": {
+    "files": ["style.css", "index.html"],
+    "readonly": ["index.html"],
+    "primary": "style.css"
+  },
+  "hints": [
+    { "level": 1, "text": "Начни с :root. Выпиши туда всё, что потом повторится: два-три цвета и два-три размера отступа. Дальше по файлу пиши только var(--имя)." },
+    { "level": 2, "text": "Фото и текст в ряд — display: flex у .card. Цена и кнопка по краям — тоже flex, но с justify-content: space-between. Ширину задай через max-width в rem." },
+    { "level": 3, "text": ":root { --paper: #fffdf7; --ink: #2f2a26; --accent: #a35a2a; --sp-3: 20px; } .card { display: flex; gap: var(--sp-3); max-width: 44rem; padding: var(--sp-3); background: var(--paper); } .card__foot { display: flex; justify-content: space-between; }" }
+  ]
+}

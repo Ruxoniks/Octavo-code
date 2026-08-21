@@ -4,12 +4,16 @@ import type { CheckRun, MascotConfig } from './types';
 /**
  * Песочница превью.
  *
- * iframe создаётся с sandbox="allow-scripts allow-forms" и БЕЗ
- * allow-same-origin. Это значит:
+ * iframe создаётся БЕЗ allow-same-origin. Это значит:
  *   - код ученика (и код, принесённый от нейросети) не видит страницу игры,
  *     её localStorage и прогресс;
  *   - родитель не может читать DOM песочницы, поэтому проверки исполняются
  *     внутри неё (см. runtime/runtime.js), а сюда приходит только результат.
+ *
+ * allow-popups нужен, чтобы работал target="_blank": без него браузер молча
+ * блокирует открытие вкладки, и ученик думает, что сломал ссылку.
+ * allow-popups-to-escape-sandbox снимает песочницу с открытой вкладки — иначе
+ * настоящий сайт откроется в ней сломанным.
  */
 
 let runCounter = 0;
@@ -71,7 +75,10 @@ export class Sandbox {
     this.iframe = document.createElement('iframe');
     this.iframe.className = 'preview__frame';
     this.iframe.title = 'Превью страницы';
-    this.iframe.setAttribute('sandbox', 'allow-scripts allow-forms');
+    this.iframe.setAttribute(
+      'sandbox',
+      'allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox',
+    );
     container.appendChild(this.iframe);
     window.addEventListener('message', this.handleMessage);
   }

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Сессия терминала</title>
+  </head>
+  <body>
+    <script id="session" type="application/json">
+      {
+        "cwd": "/home/user/portfolio",
+        "home": "/home/user",
+        "fs": {
+          "/": { "type": "dir" },
+          "/home": { "type": "dir" },
+          "/home/user": { "type": "dir" },
+          "/home/user/portfolio": { "type": "dir" },
+          "/home/user/portfolio/.git": { "type": "dir" },
+          "/home/user/portfolio/.gitignore": { "type": "file", "content": "node_modules/" },
+          "/home/user/portfolio/index.html": { "type": "file", "content": "<!doctype html>" },
+          "/home/user/portfolio/README.md": { "type": "file", "content": "# Портфолио" },
+          "/home/user/portfolio/styles": { "type": "dir" },
+          "/home/user/portfolio/styles/style.css": { "type": "file", "content": "body { margin: 0 }" }
+        },
+        "git": {
+          "initialized": true,
+          "branch": "main",
+          "staged": [],
+          "commits": [
+            { "message": "Каркас проекта", "files": [".gitignore", "README.md", "index.html"] },
+            { "message": "Добавил файл со стилями", "files": ["styles/style.css"] }
+          ],
+          "remote": "https://github.com/anya/portfolio.git",
+          "pushed": true
+        },
+        "pasted": {},
+        "history": []
+      }
+    </script>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 {
   "id": "html-links-images",
   "chapter": "html",
-  "order": 3,
+  "order": 4,
   "type": "code",
   "title": "Ссылки, картинки и атрибуты",
   "summary": "Тег умеет нести дополнительные данные — атрибуты. Без них не работают ни ссылки, ни картинки.",
@@ -11,7 +11,7 @@
   "requires": ["html-nesting"],
   "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
   "hints": [
-    { "level": 1, "text": "Ссылка: <a href=\"https://developer.mozilla.org\">Текст ссылки</a>. Адрес живёт в атрибуте href." },
+    { "level": 1, "text": "Ссылка: <a href=\"https://developer.mozilla.org\" target=\"_blank\" rel=\"noopener\">Текст ссылки</a>. Адрес живёт в href, а target отвечает за новую вкладку." },
     { "level": 2, "text": "Картинка закрывается сама: <img src=\"cursor.svg\" alt=\"Описание картинки\" />. Атрибут alt — текст для тех, кто картинку не видит." },
     { "level": 3, "text": "Нумерованный список — <ol> с <li> внутри, он отличается от <ul> только тем, что браузер сам ставит номера." }
   ]

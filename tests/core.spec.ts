@@ -128,3 +128,71 @@ describe('физика подъёма курсора', () => {
     expect(outcome.message).toContain('пропущена');
   });
 });
+
+describe('ссылки в превью', () => {
+  async function clickLink(markup: string): Promise<{
+    opened: string[];
+    prevented: boolean;
+    hints: string[];
+  }> {
+    const window = new Window({ url: 'https://octavo.local/' });
+    const opened: string[] = [];
+    const hints: string[] = [];
+
+    // Превью — отдельный origin, поэтому наверх уходят только сообщения.
+    (window as unknown as { parent: unknown }).parent = {
+      postMessage: (message: { type?: string; text?: string }) => {
+        if (message?.type === 'octavo:console' && message.text) hints.push(message.text);
+      },
+    };
+    // Рантайм открывает вкладку с признаком noopener. happy-dom тоже зовёт
+    // open, когда сама переходит по ссылке, — эти вызовы нам не интересны.
+    (window as unknown as { open: (url: string, target?: string, features?: string) => void }).open = (
+      url: string,
+      _target?: string,
+      features?: string,
+    ) => {
+      if (features === 'noopener') opened.push(url);
+    };
+
+    window.document.write(buildSrcDoc({ 'index.html': markup }, 'index.html'));
+    window.document.close();
+    await window.happyDOM.waitUntilComplete();
+
+    const link = window.document.querySelector('a') as unknown as {
+      dispatchEvent: (event: unknown) => boolean;
+    };
+    const event = new window.MouseEvent('click', { bubbles: true, cancelable: true });
+    link.dispatchEvent(event);
+    const prevented = (event as unknown as { defaultPrevented: boolean }).defaultPrevented;
+
+    await window.happyDOM.close();
+    return { opened, prevented, hints };
+  }
+
+  const page = (link: string): string =>
+    `<!doctype html><html><head></head><body>${link}</body></html>`;
+
+  it('внешнюю ссылку без target открывает в новой вкладке и объясняет почему', async () => {
+    const result = await clickLink(page('<a href="https://example.com/">Наружу</a>'));
+
+    expect(result.opened).toEqual(['https://example.com/']);
+    expect(result.prevented).toBe(true);
+    expect(result.hints.join(' ')).toContain('target="_blank"');
+  });
+
+  it('ссылку с target="_blank" отдаёт браузеру как есть', async () => {
+    const result = await clickLink(page('<a href="https://example.com/" target="_blank">Наружу</a>'));
+
+    expect(result.opened).toEqual([]);
+    expect(result.prevented).toBe(false);
+    expect(result.hints).toEqual([]);
+  });
+
+  it('якорь внутри страницы не трогает', async () => {
+    const result = await clickLink(page('<a href="#anchor">Вниз</a>'));
+
+    expect(result.opened).toEqual([]);
+    expect(result.prevented).toBe(false);
+  });
+});

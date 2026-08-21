@@ -50,6 +50,123 @@ describe('файловая система', () => {
     expect(state.fs['/home/user/note.txt']?.content).toBe('первая\nвторая');
   });
 
+  it('mv кладёт файл в существующую папку под тем же именем', () => {
+    const { state } = run(createShell(), 'touch style.css', 'mkdir styles', 'mv style.css styles');
+    expect(state.fs['/home/user/style.css']).toBeUndefined();
+    expect(state.fs['/home/user/styles/style.css']?.type).toBe('file');
+  });
+
+  it('mv переименовывает, если такой папки нет', () => {
+    const { state } = run(createShell(), 'touch main.html', 'mv main.html index.html');
+    expect(state.fs['/home/user/main.html']).toBeUndefined();
+    expect(state.fs['/home/user/index.html']?.type).toBe('file');
+  });
+
+  it('mv переносит папку вместе с содержимым', () => {
+    const { state } = run(
+      createShell(),
+      'mkdir -p old/inner',
+      'touch old/inner/app.js',
+      'mkdir site',
+      'mv old site',
+    );
+    expect(state.fs['/home/user/old']).toBeUndefined();
+    expect(state.fs['/home/user/site/old/inner/app.js']?.type).toBe('file');
+  });
+
+  it('mv не затирает того, что уже лежит на месте', () => {
+    const result = run(createShell(), 'touch a.txt', 'mkdir dir', 'touch dir/a.txt', 'mv a.txt dir');
+    expect(result.isError).toBe(true);
+    expect(result.output).toContain('уже есть');
+  });
+
+  it('.gitignore прячет папку и от add, и от status', () => {
+    const result = run(
+      createShell(),
+      'mkdir site',
+      'cd site',
+      'touch index.html',
+      'mkdir node_modules',
+      'touch node_modules/left-pad.js',
+      'echo "node_modules/" > .gitignore',
+      'git init',
+      'git add .',
+      'git commit -m "Первая версия"',
+      'git status',
+    );
+
+    const committed = result.state.git.commits[0].files;
+    expect(committed).toContain('index.html');
+    expect(committed).toContain('.gitignore');
+    expect(committed.some((file) => file.startsWith('node_modules/'))).toBe(false);
+    expect(result.output).toContain('working tree clean');
+  });
+
+  // Задание «Чужая папка» должно проходиться теми командами, которые в нём
+  // упомянуты. Проверки задания смотрят на итог, а этот тест — на путь к нему.
+  it('сценарий задания «Чужая папка» проходится целиком', () => {
+    const messy = createShell({
+      cwd: '/home/user/sait-final-2',
+      files: {
+        '/home/user/sait-final-2': { type: 'dir' },
+        '/home/user/sait-final-2/style.css': { type: 'file', content: 'body { margin: 0 }' },
+        '/home/user/sait-final-2/script.js': { type: 'file', content: "console.log('hi')" },
+        '/home/user/sait-final-2/logo.svg': { type: 'file', content: '<svg></svg>' },
+        '/home/user/sait-final-2/new folder (2)': { type: 'dir' },
+        '/home/user/sait-final-2/new folder (2)/index.html': { type: 'file', content: '<!doctype html>' },
+        '/home/user/sait-final-2/node_modules': { type: 'dir' },
+        '/home/user/sait-final-2/node_modules/left-pad.js': { type: 'file', content: 'module.exports = 1' },
+      },
+    });
+
+    const { state } = run(
+      messy,
+      'mkdir styles scripts assets',
+      'mv style.css styles',
+      'mv script.js scripts',
+      'mv logo.svg assets',
+      'mv "new folder (2)/index.html" .',
+      'rm -r "new folder (2)"',
+      'echo "node_modules/" > .gitignore',
+      'git init',
+      'git add .',
+      'git commit -m "Разложил проект по папкам"',
+    );
+
+    expect(state.fs['/home/user/sait-final-2/index.html']?.type).toBe('file');
+    expect(state.fs['/home/user/sait-final-2/styles/style.css']?.type).toBe('file');
+    expect(state.fs['/home/user/sait-final-2/new folder (2)']).toBeUndefined();
+    expect(state.fs['/home/user/sait-final-2/node_modules/left-pad.js']?.type).toBe('file');
+    expect(state.git.commits[0].files).not.toContain('node_modules/left-pad.js');
+  });
+
+  // Итог главы «Инструменты»: от пустой домашней папки до отправленного проекта.
+  it('сценарий итога главы проходится целиком', () => {
+    const { state } = run(
+      createShell(),
+      'mkdir portfolio',
+      'cd portfolio',
+      'touch index.html README.md',
+      'mkdir styles',
+      'touch styles/style.css',
+      'echo "node_modules/" > .gitignore',
+      'git init',
+      'git add .',
+      'git commit -m "Каркас проекта"',
+      'echo "body { margin: 0 }" > styles/style.css',
+      'git add .',
+      'git commit -m "Добавил файл со стилями"',
+      'git branch -M main',
+      'git remote add origin https://github.com/anya/portfolio.git',
+      'git push -u origin main',
+    );
+
+    expect(state.git.commits).toHaveLength(2);
+    expect(state.git.branch).toBe('main');
+    expect(state.git.pushed).toBe(true);
+    expect(state.fs['/home/user/portfolio/styles/style.css']?.type).toBe('file');
+  });
+
   it('неизвестная команда отправляет к help', () => {
     const result = run(createShell(), 'gti status');
     expect(result.isError).toBe(true);

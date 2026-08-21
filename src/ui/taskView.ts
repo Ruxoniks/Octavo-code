@@ -3,7 +3,7 @@ import { getClient, tasks } from '../core/registry';
 import { clearDraft, getTaskProgress, isDone, markAttempt, markDone, saveDraft } from '../core/progress';
 import { navigate } from '../core/router';
 import { t } from '../core/i18n';
-import { clear, el } from './dom';
+import { append, clear, el } from './dom';
 import { parseBeats } from './briefBeats';
 import { Dialogue } from './dialogue';
 import { Tabs } from './tabs';
@@ -142,21 +142,24 @@ export function renderTaskView(task: ResolvedTask): HTMLElement {
 
   const renderFooter = (): void => {
     clear(footer);
-    footer.append(
+    append(footer, [
       checkButton,
       el('button', { text: t('task.run'), on: { click: () => context.requestPreview() } }),
-      el('button', {
-        text: t('task.ai'),
-        on: {
-          click: () =>
-            openAiPanel({
-              task,
-              getFiles: () => files,
-              applyFiles,
-              goal: task.manifest.ai?.goal,
-            }),
-        },
-      }),
+      // Итоговые задания главы человек пишет сам — там кнопки нейросети нет.
+      task.manifest.allowAi === false
+        ? null
+        : el('button', {
+            text: t('task.ai'),
+            on: {
+              click: () =>
+                openAiPanel({
+                  task,
+                  getFiles: () => files,
+                  applyFiles,
+                  goal: task.manifest.ai?.goal,
+                }),
+            },
+          }),
       el('button', {
         class: 'ghost',
         text: t('task.reset'),
@@ -173,7 +176,7 @@ export function renderTaskView(task: ResolvedTask): HTMLElement {
           },
         },
       }),
-    );
+    ]);
 
     const next = nextTask(task);
     if (isDone(id) && next) {

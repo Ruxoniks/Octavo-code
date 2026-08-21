@@ -1,0 +1,73 @@
+/*
+  Оформление написано заранее и держится на смысловых тегах, а не на классах.
+  Это и есть проверка твоей разметки: если структура выбрана верно,
+  страница соберётся сама. Ничего править здесь не нужно.
+*/
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: #f6f2ea;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+header,
+main,
+footer {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+header {
+  border-bottom: 2px solid #d9cdb8;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 19px;
+  margin: 24px 0 8px;
+  color: #7a4a2f;
+}
+
+section,
+article {
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+  padding: 4px 18px 18px;
+  margin-bottom: 16px;
+}
+
+img {
+  display: block;
+  width: 180px;
+  margin: 0 auto 20px;
+}
+
+ul,
+ol {
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+a {
+  color: #a35a2a;
+}
+
+footer {
+  border-top: 2px solid #d9cdb8;
+  padding-top: 12px;
+  margin-top: 24px;
+  color: #6b6157;
+}

@@ -5,7 +5,11 @@ check('link', 'Есть ссылка с адресом и текстом', funct
   t.assert(href.indexOf('https://') === 0, 'Адрес «' + href + '» не похож на внешнюю ссылку — он должен начинаться с https://');
   var text = t.text(link);
   t.assert(text.length >= 4, 'У ссылки нет понятного текста. «Тут» и «ссылка» не считаются.');
-  return 'Ссылка: «' + text + '»';
+  t.assert(
+    t.attr(link, 'target') === '_blank',
+    'Ссылка откроется в этой же вкладке и твоя страница исчезнет. Добавь target="_blank", а рядом rel="noopener".',
+  );
+  return 'Ссылка: «' + text + '», откроется в новой вкладке';
 });
 
 check('image', 'Картинка с осмысленным alt', function (t) {
@@ -23,6 +27,10 @@ check('ordered-list', 'Нумерованный список из трёх пу�
   var list = t.$('ol');
   t.assert(list, 'Нумерованного списка <ol> нет. У <ul> кружочки, у <ol> номера.');
   var items = list.querySelectorAll('li');
+  t.assert(
+    items.length > 0,
+    'Список <ol> есть, но пунктов в нём нет. Текст пишут не в сам <ol>, а в отдельные <li> внутри него.',
+  );
   t.assert(items.length >= 3, 'Пунктов в списке: ' + items.length + '. Нужно минимум три.');
   return 'Пунктов: ' + items.length;
 });

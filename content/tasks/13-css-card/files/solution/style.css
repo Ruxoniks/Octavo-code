@@ -1,0 +1,86 @@
+/*
+  Одно из возможных решений. Цвета и отступы объявлены один раз в :root,
+  дальше по файлу — только имена. Поменять всю карточку теперь можно
+  из одного места, не трогая ни один селектор.
+*/
+:root {
+  --page: #f6f2ea;
+  --paper: #fffdf7;
+  --ink: #2f2a26;
+  --muted: #6b6157;
+  --accent: #a35a2a;
+  --line: #e4d9c6;
+
+  --sp-1: 6px;
+  --sp-2: 12px;
+  --sp-3: 20px;
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  padding: var(--sp-3);
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.55;
+}
+
+.card {
+  display: flex;
+  gap: var(--sp-3);
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: var(--sp-3);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.card__photo {
+  width: 28%;
+  height: auto;
+  align-self: flex-start;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.card__desc {
+  margin: var(--sp-1) 0 0;
+  color: var(--muted);
+}
+
+.card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--sp-3) 0 0;
+}
+
+.card__price {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.card__buy {
+  padding: var(--sp-1) var(--sp-3);
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--paper);
+  font: inherit;
+  cursor: pointer;
+}
+
+.card__buy:hover {
+  background: var(--ink);
+}

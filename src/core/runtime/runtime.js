@@ -59,6 +59,37 @@
     });
   });
 
+  // ---------- ссылки наружу ----------
+
+  /*
+   * Превью — это окошко внутри игры. Обычная ссылка заменила бы в нём
+   * страницу ученика, и он решил бы, что сломал свой код. Поэтому внешние
+   * ссылки без target мы открываем в новой вкладке сами и объясняем, что
+   * произошло. Ссылку с target="_blank" не трогаем: там вкладку открывает
+   * сам браузер, и это заслуга атрибута, который написал ученик.
+   */
+  doc.addEventListener('click', function (event) {
+    if (event.defaultPrevented || event.button !== 0) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    var link = event.target && event.target.closest ? event.target.closest('a[href]') : null;
+    if (!link) return;
+
+    var href = link.getAttribute('href') || '';
+    if (!/^https?:\/\//i.test(href)) return;
+    if ((link.getAttribute('target') || '') === '_blank') return;
+
+    event.preventDefault();
+    global.open(href, '_blank', 'noopener');
+    send({
+      type: 'octavo:console',
+      level: 'info',
+      text:
+        'Ссылка открыта в новой вкладке. У этой ссылки нет target="_blank", ' +
+        'поэтому на настоящем сайте она заменила бы страницу, а здесь заменила бы превью.',
+    });
+  });
+
   // ---------- вспомогательные функции для проверок ----------
 
   function CheckFailure(message) {

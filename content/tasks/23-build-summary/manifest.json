@@ -1,0 +1,23 @@
+{
+  "id": "build-summary",
+  "chapter": "build",
+  "order": 8,
+  "type": "code",
+  "title": "Итог главы: собрать страницу целиком",
+  "summary": "Три файла, пустая разметка и одно требование — страница должна быть живой.",
+  "difficulty": 4,
+  "estimateMin": 35,
+  "tags": ["сборка", "итог"],
+  "requires": ["client-coffee"],
+  "allowAi": false,
+  "editor": {
+    "files": ["index.html", "app.js", "style.css"],
+    "readonly": ["style.css"],
+    "primary": "index.html"
+  },
+  "hints": [
+    { "level": 1, "text": "Сначала разметка целиком, потом скрипт. Пока в HTML нет кнопки и абзаца, которому менять текст, писать app.js не за что." },
+    { "level": 2, "text": "Оформление ждёт класс block на каждом самостоятельном куске страницы. Элементам, до которых дотянется скрипт, дай id — по нему их находит document.querySelector('#имя')." },
+    { "level": 3, "text": "Разметка: <header class=\"block\"> с <h1>, внутри <main> три <section class=\"block\"> со своими <h2>, внизу <footer class=\"block\">, перед </body> — <script src=\"app.js\"></script>. В app.js: найти кнопку и абзац, повесить addEventListener('click'), менять textContent." }
+  ]
+}

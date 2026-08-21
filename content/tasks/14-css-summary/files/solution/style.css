@@ -1,0 +1,98 @@
+/*
+  Одно из возможных решений. Всё, что может понадобиться поменять,
+  вынесено наверх — дальше по файлу только имена.
+*/
+:root {
+  --page: #f6f2ea;
+  --paper: #fffdf7;
+  --ink: #2f2a26;
+  --muted: #6b6157;
+  --accent: #a35a2a;
+  --line: #e4d9c6;
+
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 28px;
+  --radius: 14px;
+}
+
+body {
+  margin: 0;
+  padding: var(--sp-3);
+  background: var(--page);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+p {
+  margin: var(--sp-1) 0 0;
+}
+
+.page {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-2);
+  border-bottom: 2px solid var(--line);
+}
+
+.profile__photo {
+  width: 88px;
+  border-radius: 50%;
+}
+
+.profile__role {
+  color: var(--muted);
+}
+
+.card {
+  margin: var(--sp-2) 0 0;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1);
+  margin: var(--sp-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--page);
+  font-size: 14px;
+}
+
+.footer {
+  margin: var(--sp-3) 0 0;
+  padding-top: var(--sp-2);
+  border-top: 2px solid var(--line);
+}
+
+.footer__link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footer__link:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}

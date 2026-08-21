@@ -40,6 +40,7 @@ export const taskManifestSchema = z
     estimateMin: z.number().int().min(1).max(180),
     requires: z.array(z.string()).optional(),
     tags: z.array(z.string()).optional(),
+    allowAi: z.boolean().optional(),
     editor: z
       .object({
         files: z.array(z.string()).optional(),

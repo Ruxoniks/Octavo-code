@@ -1,0 +1,23 @@
+{
+  "id": "css-summary",
+  "chapter": "css",
+  "order": 6,
+  "type": "code",
+  "title": "Итог главы: оформить страницу",
+  "summary": "Готовая разметка, пустой style.css и вся глава про CSS в голове.",
+  "difficulty": 3,
+  "estimateMin": 30,
+  "tags": ["css", "итог"],
+  "requires": ["css-card"],
+  "allowAi": false,
+  "editor": {
+    "files": ["style.css", "index.html"],
+    "readonly": ["index.html"],
+    "primary": "style.css"
+  },
+  "hints": [
+    { "level": 1, "text": "Пиши файл сверху вниз, от общего к частному: сначала :root с переменными, потом body и теги, и только потом классы отдельных блоков." },
+    { "level": 2, "text": "Посмотри на разметку и найди, что должно стоять в ряд: фотография рядом с именем, список умений в строку. Это два места для display: flex." },
+    { "level": 3, "text": "Вернись к заданиям главы: «Селекторы и цвета» (по тегу и по классу), «Коробочная модель» (padding, border, margin), «Блоки в ряд» (flex, gap), «Переменные и тема» (:root и var())." }
+  ]
+}

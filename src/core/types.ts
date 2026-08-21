@@ -136,6 +136,8 @@ export interface TaskManifest {
   estimateMin: number;
   requires?: string[];
   tags?: string[];
+  /** false убирает кнопку «Спросить нейросеть»: это задание человек делает сам. */
+  allowAi?: boolean;
   editor?: Partial<EditorConfig>;
   preview?: Partial<PreviewConfig>;
   hints?: HintDef[];
