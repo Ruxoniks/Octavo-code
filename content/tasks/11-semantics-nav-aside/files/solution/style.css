@@ -130,14 +130,15 @@ body {
   border-bottom-color: #8d5433;
 }
 
-.column {
+/* Врезку игрок пишет сам, поэтому оформление держится на теге, а не на классе. */
+aside {
   margin: 0 0 36px;
   padding: 16px 20px;
   background: #fffdf7;
   border-left: 4px solid #8d5433;
 }
 
-.column h2 {
+aside h2 {
   margin: 0 0 8px;
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   font-size: 13px;
@@ -146,7 +147,7 @@ body {
   color: #8d5433;
 }
 
-.column p {
+aside p {
   margin: 0;
   font-size: 15px;
 }

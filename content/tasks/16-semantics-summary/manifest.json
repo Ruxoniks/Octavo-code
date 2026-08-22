@@ -12,7 +12,7 @@
     "итог"
   ],
   "requires": [
-    "semantics-audit"
+    "semantics-from-brief"
   ],
   "allowAi": false,
   "editor": {

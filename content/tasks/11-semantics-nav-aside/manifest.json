@@ -6,13 +6,33 @@
   "title": "Навигация и поля страницы",
   "summary": "Три ссылки в шапке ведут в никуда, а колонка редактора стоит в общем потоке, будто это новость.",
   "difficulty": 3,
-  "estimateMin": 20,
-  "tags": ["семантика", "навигация"],
-  "requires": ["semantics-article-section"],
-  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "estimateMin": 25,
+  "tags": [
+    "семантика",
+    "навигация"
+  ],
+  "requires": [
+    "semantics-article-section"
+  ],
+  "editor": {
+    "files": [
+      "index.html",
+      "style.css"
+    ],
+    "primary": "index.html"
+  },
   "hints": [
-    { "level": 1, "text": "У разделов на странице уже есть id: novosti, pisma, redakciya. Ссылка на раздел этой же страницы пишется так: href=\"#novosti\"." },
-    { "level": 2, "text": "Обёртка ссылок сейчас <p class=\"masthead__links\">. Абзац — это текст, а тут меню: нужен <nav>. Колонка редактора лежит в <div class=\"column\"> — это врезка, её тег <aside>." },
-    { "level": 3, "text": "<nav class=\"masthead__links\"> с тремя ссылками href=\"#novosti\", href=\"#pisma\", href=\"#redakciya\" внутри <header>. И <aside class=\"column\"> … </aside> вместо <div class=\"column\">." }
+    {
+      "level": 1,
+      "text": "У разделов на странице уже есть id: novosti, pisma, redakciya. Ссылка на раздел этой же страницы пишется так: href=\"#novosti\"."
+    },
+    {
+      "level": 2,
+      "text": "Обёртка ссылок сейчас <p class=\"masthead__links\">. Абзац — это текст, а тут меню: нужен <nav>. Колонки редактора в файле нет совсем — её пишешь ты, а тег для неё выбирается по смыслу: убери колонку, и новости не пострадают."
+    },
+    {
+      "level": 3,
+      "text": "<nav class=\"masthead__links\"> с тремя ссылками href=\"#novosti\", href=\"#pisma\", href=\"#redakciya\" внутри <header>. А врезка выглядит примерно так: <aside><h2>Колонка редактора</h2><p>Мост строили четыре года, и все четыре года мы писали, что его не достроят...</p></aside>. Слова придумай свои — проверка смотрит на разметку и на то, что колонка про мост."
+    }
   ]
 }

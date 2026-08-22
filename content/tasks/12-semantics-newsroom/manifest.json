@@ -1,7 +1,7 @@
 {
   "id": "semantics-newsroom",
   "chapter": "semantics",
-  "order": 5,
+  "order": 4,
   "type": "code",
   "title": "Три шапки на одной странице",
   "summary": "У каждой заметки своя шапка и своя подпись — и это не ошибка. Ошибка начинается там, где шапки вкладывают друг в друга.",
@@ -12,7 +12,7 @@
     "структура"
   ],
   "requires": [
-    "semantics-from-brief"
+    "semantics-nav-aside"
   ],
   "editor": {
     "files": [
