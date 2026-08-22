@@ -1,0 +1,55 @@
+/*
+  Одно из возможных решений. Картинка ушла налево, текст направо — блок
+  зеркалит первый экран, и страница перестаёт быть монотонной. Струна
+  при этом уцелела: внутри колонки все строки по-прежнему на одной линии.
+*/
+:root {
+  --fs-1: 2.5rem;
+  --fs-2: 1.125rem;
+  --fs-3: 1rem;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.about {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.about__text {
+  flex: 1;
+}
+
+.about__title {
+  margin: 0 0 16px;
+  font-size: var(--fs-1);
+  line-height: 1.1;
+}
+
+.about__lead {
+  margin: 0 0 8px;
+  font-size: var(--fs-2);
+  line-height: 1.6;
+  color: #5b5148;
+}
+
+.about__note {
+  margin: 0;
+  font-size: var(--fs-3);
+  line-height: 1.6;
+  color: #8a7f73;
+}
+
+.about__media {
+  width: 40%;
+  height: auto;
+}

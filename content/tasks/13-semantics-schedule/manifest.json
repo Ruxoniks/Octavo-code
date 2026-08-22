@@ -1,0 +1,18 @@
+{
+  "id": "semantics-schedule",
+  "chapter": "semantics",
+  "order": 5,
+  "type": "code",
+  "title": "Расписание электричек",
+  "summary": "Четыре станции, четыре столбца и ни одной таблицы. Человек разберётся, а поиск и программа чтения — нет.",
+  "difficulty": 4,
+  "estimateMin": 30,
+  "tags": ["семантика", "таблицы"],
+  "requires": ["semantics-newsroom"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Таблица собирается из трёх вещей: <table> целиком, <tr> — строка, ячейка — <td> или <th>. Заголовочная ячейка это <th>, обычная — <td>." },
+    { "level": 2, "text": "Строку заголовков заверни в <thead>, остальные — в <tbody>. У заголовков столбцов ставь scope=\"col\", а название станции в начале каждой строки — это тоже заголовок, только строки: <th scope=\"row\">." },
+    { "level": 3, "text": "<table class=\"schedule\"> с <caption>, затем <thead><tr><th scope=\"col\">Станция</th>…</tr></thead> и <tbody> с четырьмя строками вида <tr><th scope=\"row\">Каменка</th><td>05:42</td><td>каждые 30 минут</td><td>23:10</td></tr>. Оформление для таблицы в style.css уже написано." }
+  ]
+}

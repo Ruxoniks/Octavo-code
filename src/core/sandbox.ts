@@ -110,7 +110,10 @@ export class Sandbox {
 
   /** Просит песочницу выполнить проверки и ждёт результат с таймаутом. */
   async runChecks(source: string, timeoutMs: number, mascot?: MascotConfig): Promise<CheckRun> {
-    await this.ready;
+    // Ждём готовности, но не бесконечно: если песочница почему-то не отозвалась,
+    // проверка должна упереться в свой таймаут и показать это человеку,
+    // а не оставить кнопку в состоянии «Проверяю…» навсегда.
+    await Promise.race([this.ready, new Promise<void>((resolve) => setTimeout(resolve, timeoutMs))]);
     const win = this.iframe.contentWindow;
     if (!win) return { ok: false, results: [], error: 'Песочница не готова' };
 
@@ -160,7 +163,12 @@ export class Sandbox {
     });
   }
 
-  playMascot(mascot: MascotConfig): void {
+  /**
+   * Ждём готовности документа: превью пересобирается на каждую правку кода,
+   * и сообщение, отправленное в этот момент, ушло бы в уже мёртвый документ.
+   */
+  async playMascot(mascot: MascotConfig): Promise<void> {
+    await this.ready;
     this.iframe.contentWindow?.postMessage({ type: 'octavo:play-mascot', mascot }, '*');
   }
 

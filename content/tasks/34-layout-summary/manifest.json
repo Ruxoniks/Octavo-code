@@ -1,0 +1,19 @@
+{
+  "id": "layout-summary",
+  "chapter": "layout",
+  "order": 11,
+  "type": "code",
+  "title": "Итог главы: собрать страницу",
+  "summary": "Пять готовых блоков и ни одного правила на уровне страницы. Ритм целого — за тобой.",
+  "difficulty": 4,
+  "estimateMin": 35,
+  "tags": ["композиция", "итог"],
+  "requires": ["layout-cta"],
+  "allowAi": false,
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Посмотри на пять правил .section--… наверху файла. У каждого блока своя max-width и свои поля — именно поэтому левый край гуляет. Что общего должно быть у всех пяти?" },
+    { "level": 2, "text": "Замени пять разных правил одним общим для .section: одна ширина, одни боковые поля, один нижний отступ. Финальный экран — единственное исключение: он тянется во всю ширину." },
+    { "level": 3, "text": ".section { max-width: 960px; margin: 0 auto 96px; padding: 0 24px; } .section--cta { max-width: none; padding: 96px 24px; margin-bottom: 0; } Пять отдельных правил с разными ширинами удали." }
+  ]
+}

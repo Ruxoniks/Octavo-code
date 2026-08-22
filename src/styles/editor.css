@@ -65,12 +65,8 @@
   display: flex;
   gap: var(--sp-3);
   padding: 0 var(--sp-3);
-  cursor: pointer;
   white-space: pre;
 }
-
-.code-view__line:hover { background: var(--paper-sunk); }
-.code-view__line[aria-selected='true'] { background: var(--plum-veil-strong); }
 .code-view__num { color: var(--faint); user-select: none; min-width: 2.5ch; text-align: right; }
 
 /* ---------- Сборка компонентов мышкой ---------- */

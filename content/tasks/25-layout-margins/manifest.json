@@ -1,0 +1,19 @@
+{
+  "id": "layout-margins",
+  "chapter": "layout",
+  "order": 2,
+  "type": "code",
+  "title": "Поля и воздух",
+  "summary": "Пустота вокруг содержимого — не потерянное место, а единственный способ сделать акцент, ничего не добавляя.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["композиция", "поля"],
+  "requires": ["layout-alignment"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "preview": { "mascot": { "mode": "gaze", "target": ".quote__text, .quote__author" } },
+  "hints": [
+    { "level": 1, "text": "Сравни два числа: padding у .quote и margin-bottom у .quote__text. Сейчас первое равно нулю, а второе — 56 пикселям. Должно быть наоборот." },
+    { "level": 2, "text": "Отзыв и подпись — одна мысль, их надо сблизить. А весь блок наоборот отодвинуть от краёв. Ширину ограничь через max-width в rem." },
+    { "level": 3, "text": ".quote { max-width: 34rem; margin: 64px auto; padding: 56px 48px; } .quote__text { margin: 0 0 16px; }" }
+  ]
+}

@@ -1,0 +1,18 @@
+/*
+  Оформления почти нет — только шрифт и фон, чтобы страница не выглядела
+  голой. Первый экран собираешь ты, с нуля и по всем правилам главы.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.hero__action {
+  display: inline-block;
+  background: #b3714a;
+  color: #fffdf7;
+  text-decoration: none;
+  border-radius: 10px;
+}

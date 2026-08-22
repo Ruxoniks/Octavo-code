@@ -1,0 +1,18 @@
+{
+  "id": "semantics-nav-aside",
+  "chapter": "semantics",
+  "order": 3,
+  "type": "code",
+  "title": "Навигация и поля страницы",
+  "summary": "Три ссылки в шапке ведут в никуда, а колонка редактора стоит в общем потоке, будто это новость.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["семантика", "навигация"],
+  "requires": ["semantics-article-section"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "У разделов на странице уже есть id: novosti, pisma, redakciya. Ссылка на раздел этой же страницы пишется так: href=\"#novosti\"." },
+    { "level": 2, "text": "Обёртка ссылок сейчас <p class=\"masthead__links\">. Абзац — это текст, а тут меню: нужен <nav>. Колонка редактора лежит в <div class=\"column\"> — это врезка, её тег <aside>." },
+    { "level": 3, "text": "<nav class=\"masthead__links\"> с тремя ссылками href=\"#novosti\", href=\"#pisma\", href=\"#redakciya\" внутри <header>. И <aside class=\"column\"> … </aside> вместо <div class=\"column\">." }
+  ]
+}

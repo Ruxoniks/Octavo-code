@@ -1,0 +1,100 @@
+/*
+  Оформление «Восьмой полосы».
+
+  Все правила здесь написаны по классам. Браузеру всё равно, каким тегом
+  обёрнут блок: он видит class="masthead" и красит. Поэтому после твоей
+  правки страница не изменится ни на пиксель — и это главное наблюдение
+  задания.
+*/
+body {
+  margin: 0;
+  padding: 40px 24px;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+.masthead {
+  max-width: 720px;
+  margin: 0 auto 28px;
+  padding-bottom: 14px;
+  border-bottom: 3px double #8d5433;
+}
+
+.masthead__kicker {
+  margin: 0 0 4px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7f73;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.strip {
+  margin: 0 0 36px;
+}
+
+.strip h2 {
+  margin: 0 0 14px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+.note {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+.note h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.note__date {
+  margin: 0 0 10px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.note p {
+  margin: 0 0 10px;
+}
+
+.note__author {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.colophon {
+  max-width: 720px;
+  margin: 32px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid #e4d9c6;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.colophon p {
+  margin: 0;
+}

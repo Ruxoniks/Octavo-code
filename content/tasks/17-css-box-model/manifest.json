@@ -1,0 +1,18 @@
+{
+  "id": "css-box-model",
+  "chapter": "css",
+  "order": 1,
+  "type": "code",
+  "title": "Коробочная модель",
+  "summary": "Каждый элемент — прямоугольник с внутренними отступами, рамкой и внешними отступами.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["css", "отступы"],
+  "requires": ["css-selectors"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "padding — расстояние от содержимого до рамки, margin — расстояние от рамки до соседей. Их постоянно путают." },
+    { "level": 2, "text": "Рамка пишется одной строкой: border: 1px solid #e4d9c6;" },
+    { "level": 3, "text": "Готовый набор: .card { padding: 20px 24px; border: 1px solid #e4d9c6; border-radius: 12px; margin-bottom: 16px; background: #fffdf7; }" }
+  ]
+}

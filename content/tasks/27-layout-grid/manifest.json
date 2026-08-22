@@ -1,0 +1,18 @@
+{
+  "id": "layout-grid",
+  "chapter": "layout",
+  "order": 4,
+  "type": "code",
+  "title": "Сетка и визуальная грамматика",
+  "summary": "Колонки задают горизонталь, общий шаг — вертикаль. Вместе они превращают набор блоков в связный текст.",
+  "difficulty": 4,
+  "estimateMin": 30,
+  "tags": ["композиция", "сетка", "grid"],
+  "requires": ["layout-focus"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Сетка включается у контейнера: .services__grid { display: grid; }. Дальше ей нужно сказать, сколько колонок и какое между ними расстояние." },
+    { "level": 2, "text": "grid-template-columns: repeat(3, 1fr) — три колонки, делящие место поровну. gap работает так же, как во flex. Заодно пройди по файлу и замени 13, 27 и 5 на кратные восьми." },
+    { "level": 3, "text": ".services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; } .card { padding: 24px; } .card__title { margin: 0 0 8px; } .card__text { margin: 0 0 16px; }" }
+  ]
+}

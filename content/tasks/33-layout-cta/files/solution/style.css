@@ -1,0 +1,43 @@
+/*
+  Одно из возможных решений. Здесь центр наконец уместен: читать нечего,
+  строки короткие, действие одно. Зато полей вокруг стало вдвое больше,
+  чем расстояний внутри, — и кнопка осталась в блоке единственной целью.
+*/
+.cta {
+  padding: 96px 24px;
+  background: #f0e7d8;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.cta__inner {
+  max-width: 26rem;
+  margin: 0 auto;
+}
+
+.cta__title {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.cta__note {
+  margin: 0 0 32px;
+  color: #5b5148;
+}
+
+.cta__action {
+  display: inline-block;
+  padding: 16px 24px;
+  border-radius: 10px;
+  background: #b3714a;
+  color: #fffdf7;
+  text-decoration: none;
+}

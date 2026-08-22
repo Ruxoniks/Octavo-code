@@ -1,0 +1,55 @@
+/*
+  Одно из возможных решений. Ни одного личного отступа слева: все элементы
+  стоят на общей линии, которую задаёт колонка. Правый край картинки
+  совпал с правым краем блока — это вторая струна.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.about__text {
+  flex: 1;
+}
+
+.about__title {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+.about__lead {
+  margin-bottom: 8px;
+  font-size: 18px;
+  color: #5b5148;
+}
+
+.about__note {
+  margin-bottom: 24px;
+  color: #8a7f73;
+}
+
+.about__action {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #b3714a;
+  color: #fffdf7;
+  text-decoration: none;
+}
+
+.about__media {
+  width: 38%;
+  height: auto;
+}

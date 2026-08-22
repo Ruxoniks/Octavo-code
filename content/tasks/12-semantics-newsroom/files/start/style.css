@@ -1,0 +1,178 @@
+/*
+  Оформление «Восьмой полосы». Готово, править не нужно — но можно.
+*/
+body {
+  margin: 0;
+  padding: 40px 24px;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+.masthead {
+  max-width: 720px;
+  margin: 0 auto 28px;
+  padding-bottom: 14px;
+  border-bottom: 3px double #8d5433;
+}
+
+.masthead__kicker {
+  margin: 0 0 4px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a7f73;
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.strip {
+  margin: 0 0 36px;
+}
+
+.strip h2 {
+  margin: 0 0 14px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+.note {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+.note h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.note__date {
+  margin: 0 0 10px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.note p {
+  margin: 0 0 10px;
+}
+
+.note__author {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.colophon {
+  max-width: 720px;
+  margin: 32px auto 0;
+  padding-top: 14px;
+  border-top: 1px solid #e4d9c6;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.colophon p {
+  margin: 0;
+}
+
+.about {
+  padding: 20px 24px;
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 4px;
+}
+
+.about h2 {
+  margin-top: 0;
+}
+
+.about p {
+  margin: 0 0 10px;
+}
+
+.about p:last-child {
+  margin-bottom: 0;
+}
+
+.masthead__links {
+  margin: 12px 0 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.masthead__links a {
+  color: #8d5433;
+  text-decoration: none;
+  border-bottom: 1px solid #e4d9c6;
+  margin-right: 16px;
+}
+
+.masthead__links a:hover {
+  border-bottom-color: #8d5433;
+}
+
+.column {
+  margin: 0 0 36px;
+  padding: 16px 20px;
+  background: #fffdf7;
+  border-left: 4px solid #8d5433;
+}
+
+.column h2 {
+  margin: 0 0 8px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+.column p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.letters p {
+  margin: 0 0 10px;
+}
+
+.note__head {
+  margin: 0 0 10px;
+}
+
+.note__head h3 {
+  margin: 0 0 6px;
+}
+
+.note__head .note__date {
+  margin: 0;
+}
+
+.note__foot {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+.note__foot .note__tag {
+  color: #8d5433;
+}

@@ -1,0 +1,19 @@
+{
+  "id": "layout-about",
+  "chapter": "layout",
+  "order": 8,
+  "type": "code",
+  "title": "Блок «О нас»",
+  "summary": "Второй блок подряд с той же стороной читается как продолжение первого. Асимметрию надо отзеркалить.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["композиция", "блок"],
+  "requires": ["layout-hero"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "preview": { "mascot": { "mode": "gaze", "target": ".about__title, .about__lead, .about__note" } },
+  "hints": [
+    { "level": 1, "text": "Сторону блока задаёт не CSS, а порядок в разметке: кто стоит первым, тот и слева. Переставь <img> выше колонки с текстом." },
+    { "level": 2, "text": "После переворота проверь заголовок: он остался 18 пикселей, почти как основной текст. Иерархия при зеркалировании никуда не девается." },
+    { "level": 3, "text": "В index.html подними <img class=\"about__media\"> над <div class=\"about__text\">. В style.css задай заголовку font-size: 2.5rem и line-height: 1.1." }
+  ]
+}

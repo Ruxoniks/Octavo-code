@@ -14,6 +14,13 @@ import { el } from './dom';
  * решает, с чего начать.
  */
 
+/**
+ * Позиция прокрутки карты между переходами в задание и обратно.
+ * Карта каждый раз собирается заново, поэтому её прокрутку помним сами.
+ */
+let scrollTop = 0;
+let screenEl: HTMLElement | null = null;
+
 function typeLabel(manifest: ResolvedTask['manifest']): string {
   // Итог главы важнее типа: человек должен видеть, что это контрольная точка.
   if (manifest.tags?.includes('итог')) return 'итог главы';
@@ -156,5 +163,22 @@ export function renderMap(): HTMLElement {
     navigate(link.hash.replace('#', ''));
   });
 
-  return el('div', { class: 'screen' }, map);
+  const screen = el('div', { class: 'screen' }, map);
+  screen.addEventListener('scroll', () => {
+    scrollTop = screen.scrollTop;
+  });
+  screenEl = screen;
+
+  return screen;
+}
+
+/**
+ * Вернуть карту туда, где человек её оставил: он уходил в задание из середины
+ * списка — туда же и возвращается, а не в самое начало.
+ *
+ * Вызывать после вставки карты в документ: у элемента вне документа нет
+ * высоты, и прокручивать в нём нечего.
+ */
+export function restoreMapScroll(): void {
+  if (screenEl && screenEl.isConnected) screenEl.scrollTop = scrollTop;
 }

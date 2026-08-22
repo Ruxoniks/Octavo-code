@@ -3,6 +3,11 @@ import type { CheckRun, MascotConfig } from '../core/types';
 import { t } from '../core/i18n';
 import { el, clear } from './dom';
 
+export interface PreviewOptions {
+  /** Маскот добежал до конца — можно снова разрешить запуск. */
+  onMascotFinished?: () => void;
+}
+
 /** Правая колонка: живое превью в песочнице плюс консоль сообщений из неё. */
 export class PreviewPane {
   readonly element: HTMLElement;
@@ -10,7 +15,7 @@ export class PreviewPane {
   private consoleHost: HTMLElement;
   private sandbox: Sandbox;
 
-  constructor() {
+  constructor(options: PreviewOptions = {}) {
     this.frameHost = el('div', { class: 'preview' });
     this.consoleHost = el('div', { class: 'console' });
 
@@ -25,6 +30,7 @@ export class PreviewPane {
 
     this.sandbox = new Sandbox(this.frameHost, {
       onConsole: (level, text) => this.log(level, text),
+      onMascotFinished: options.onMascotFinished,
     });
   }
 
@@ -50,8 +56,8 @@ export class PreviewPane {
     return this.sandbox.runChecks(source, timeoutMs, mascot);
   }
 
-  playMascot(mascot: MascotConfig): void {
-    this.sandbox.playMascot(mascot);
+  playMascot(mascot: MascotConfig): Promise<void> {
+    return this.sandbox.playMascot(mascot);
   }
 
   destroy(): void {

@@ -1,0 +1,21 @@
+{
+  "id": "layout-alignment",
+  "chapter": "layout",
+  "order": 1,
+  "type": "code",
+  "title": "Невидимая струна",
+  "summary": "Элементы держатся вместе не рамкой и не фоном, а линией, вдоль которой они выстроены.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["композиция", "выравнивание"],
+  "requires": ["layout-center-trap"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "preview": {
+    "mascot": { "mode": "gaze", "target": ".about__title, .about__lead, .about__note, .about__action" }
+  },
+  "hints": [
+    { "level": 1, "text": "Пройди по файлу и найди все margin-left. Их четыре, и все разные — именно они разводят элементы по своим местам." },
+    { "level": 2, "text": "Отступ слева должен быть один на всю колонку. Проще всего убрать личные margin-left совсем: колонка уже стоит там, где нужно." },
+    { "level": 3, "text": "Удали margin-left у .about__title, .about__lead, .about__note и .about__action, а у .about__media — margin-right: 36px, который не даёт картинке встать вровень с правым краем блока." }
+  ]
+}

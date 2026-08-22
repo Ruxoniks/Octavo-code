@@ -1,0 +1,46 @@
+/*
+  Одно из возможных решений. Шкала объявлена один раз наверху, ниже по файлу
+  только имена. Заголовок крупнее текста в 2.75 раза — разница, которую
+  видно боковым зрением, ещё до того как начал читать.
+*/
+:root {
+  --fs-1: 2.75rem;
+  --fs-2: 1.25rem;
+  --fs-3: 1rem;
+
+  --lh-tight: 1.1;
+  --lh-text: 1.6;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.intake {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.intake__title {
+  margin: 0 0 16px;
+  font-size: var(--fs-1);
+  line-height: var(--lh-tight);
+}
+
+.intake__lead {
+  margin: 0 0 16px;
+  font-size: var(--fs-2);
+  line-height: var(--lh-text);
+  color: #5b5148;
+}
+
+.intake__note {
+  margin: 0;
+  font-size: var(--fs-3);
+  line-height: var(--lh-text);
+  color: #8a7f73;
+}

@@ -1,0 +1,19 @@
+{
+  "id": "layout-focus",
+  "chapter": "layout",
+  "order": 3,
+  "type": "code",
+  "title": "Точка притяжения",
+  "summary": "У композиции есть место, с которого начинается просмотр. Обычно это изображение — и оно должно выигрывать заметно.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["композиция", "акцент"],
+  "requires": ["layout-margins"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "preview": { "mascot": { "mode": "gaze", "target": ".pitch__title, .pitch__lead, .pitch__note" } },
+  "hints": [
+    { "level": 1, "text": "Восемьдесят пикселей — это размер иконки, а не точки притяжения. Задай ширину долей от блока: например, процентами." },
+    { "level": 2, "text": "Чтобы верх картинки встал вровень с заголовком, колонкам нужно align-items: flex-start вместо center — тогда они начинаются от общей верхней линии." },
+    { "level": 3, "text": ".pitch { align-items: flex-start; } .pitch__media { width: 42%; height: auto; }" }
+  ]
+}

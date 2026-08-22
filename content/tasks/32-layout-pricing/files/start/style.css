@@ -1,0 +1,62 @@
+/*
+  Цены. Средний тариф выделен единственным способом, который первым приходит
+  в голову, — залит ярким цветом. Размер и воздух у всех троих одинаковые.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.pricing {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.pricing__title {
+  margin: 0 0 32px;
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.plan {
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.plan__name {
+  margin: 0 0 8px;
+  font-size: 1.0625rem;
+}
+
+.plan__price {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.plan__note {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #8a7f73;
+}
+
+.plan--featured {
+  background: #b3714a;
+  color: #fffdf7;
+}
+
+.plan--featured .plan__note {
+  color: #f0ddcd;
+}

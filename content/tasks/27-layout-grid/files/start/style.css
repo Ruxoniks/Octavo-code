@@ -1,0 +1,46 @@
+/*
+  Занятия. Карточки идут друг под другом, а отступы ставили на глаз:
+  13, 27, 5 — числа, которых никто не выбирал сознательно.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.services {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.services__title {
+  margin: 0 0 27px;
+  font-size: 28px;
+}
+
+.card {
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+  padding: 13px;
+  margin-bottom: 27px;
+}
+
+.card__title {
+  margin: 0 0 5px;
+  font-size: 19px;
+}
+
+.card__text {
+  margin: 0 0 13px;
+  color: #5b5148;
+}
+
+.card__meta {
+  margin: 0;
+  color: #8a7f73;
+  font-size: 14px;
+}

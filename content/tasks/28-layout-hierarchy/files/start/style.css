@@ -1,0 +1,36 @@
+/*
+  Ближайший набор. Три уровня текста формально есть, но размеры почти
+  одинаковые: 18, 16 и 15. Глазу не за что зацепиться.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.intake {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.intake__title {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.intake__lead {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #5b5148;
+}
+
+.intake__note {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #8a7f73;
+}

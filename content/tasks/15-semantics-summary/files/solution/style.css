@@ -1,0 +1,153 @@
+/*
+  Оформление полосы готово. Написано оно по смысловым тегам: в этом файле
+  нет ни одного класса.
+
+  Разметишь страницу честно — она соберётся сама. Завернёшь всё в <div> —
+  останется голый текст на бежевом фоне, и ни одно правило отсюда не сработает.
+*/
+body {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+body > header {
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 3px double #8d5433;
+}
+
+body > header h1 {
+  margin: 0;
+  font-size: 44px;
+  line-height: 1.05;
+}
+
+nav {
+  margin-top: 12px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+nav a {
+  margin-right: 16px;
+  color: #8d5433;
+  text-decoration: none;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+nav a:hover {
+  border-bottom-color: #8d5433;
+}
+
+main section {
+  margin: 0 0 36px;
+}
+
+main section > h2 {
+  margin: 0 0 14px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+article {
+  margin: 0 0 20px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+article h3 {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+article time {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+article p {
+  margin: 0 0 10px;
+}
+
+article header {
+  margin-bottom: 10px;
+}
+
+article footer {
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}
+
+aside {
+  margin: 0 0 36px;
+  padding: 16px 20px;
+  background: #fffdf7;
+  border-left: 4px solid #8d5433;
+}
+
+aside h2 {
+  margin: 0 0 8px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+aside p {
+  margin: 0;
+  font-size: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+}
+
+caption {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #8a7f73;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+thead th {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8d5433;
+  border-bottom: 2px solid #8d5433;
+}
+
+tbody tr:nth-child(even) {
+  background: #fffdf7;
+}
+
+body > footer {
+  margin-top: 32px;
+  padding-top: 14px;
+  border-top: 1px solid #e4d9c6;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}

@@ -1,0 +1,18 @@
+{
+  "id": "css-variables",
+  "chapter": "css",
+  "order": 4,
+  "type": "code",
+  "title": "Переменные и тема",
+  "summary": "Один цвет в десяти местах — верный способ поймать ошибку. Вынесем его в переменную.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["css", "переменные"],
+  "requires": ["css-selectors"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Переменная объявляется внутри :root и начинается с двух дефисов: :root { --brand: #b3714a; }" },
+    { "level": 2, "text": "Использовать её нужно через var(): color: var(--brand);" },
+    { "level": 3, "text": "Объяви --brand и --surface в :root и подставь var(--brand) в цвет h1 и фон .btn, а var(--surface) — в фон .card." }
+  ]
+}

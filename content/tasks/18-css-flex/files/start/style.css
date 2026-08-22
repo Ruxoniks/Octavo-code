@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  padding: 48px 24px;
+  background-color: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.head {
+  max-width: 860px;
+  margin: 0 auto 28px;
+}
+
+.head__kicker {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #8a7f73;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.head__note {
+  margin: 0;
+  color: #8a7f73;
+}
+
+h2 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+p {
+  margin: 0 0 12px;
+  color: #5b5148;
+}
+
+.card {
+  background: #fffdf7;
+  padding: 20px;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+}
+
+.card__price {
+  color: #8d5433;
+}
+
+.row {
+  max-width: 860px;
+  margin: 0 auto;
+  /* Сейчас карточки идут друг под другом. Исправь это. */
+}

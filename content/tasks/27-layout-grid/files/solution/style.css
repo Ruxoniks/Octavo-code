@@ -1,0 +1,52 @@
+/*
+  Одно из возможных решений. Карточки встали в три колонки настоящей сетки,
+  а все отступы кратны восьми — страница получила ритм, который держится
+  сам собой, без подгонки на глаз.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.services {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+.services__title {
+  margin: 0 0 32px;
+  font-size: 28px;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.card__text {
+  margin: 0 0 16px;
+  color: #5b5148;
+}
+
+.card__meta {
+  margin: 0;
+  color: #8a7f73;
+  font-size: 14px;
+}

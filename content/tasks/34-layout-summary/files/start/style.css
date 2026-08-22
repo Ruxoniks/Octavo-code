@@ -1,0 +1,178 @@
+/*
+  Страница целиком. Блоки внутри собраны правильно — над каждым из них ты
+  уже поработал. А вот на уровне страницы порядка нет: у каждого блока своя
+  ширина и свои поля, поэтому левый край гуляет, а расстояния между блоками
+  выбраны наугад.
+
+  Уровень страницы — за тобой.
+*/
+:root {
+  --fs-1: 2.5rem;
+  --fs-2: 1.125rem;
+  --fs-3: 1rem;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* --- Уровень страницы: здесь всё вразнобой. --- */
+
+.section--hero {
+  max-width: 900px;
+  margin: 0 auto 44px;
+  padding: 40px 16px 0;
+}
+
+.section--about {
+  max-width: 1040px;
+  margin: 0 auto 68px;
+  padding: 0 36px;
+}
+
+.section--services {
+  max-width: 860px;
+  margin: 0 auto 30px;
+  padding: 0 12px;
+}
+
+.section--pricing {
+  max-width: 1000px;
+  margin: 0 auto 52px;
+  padding: 0 40px;
+}
+
+.section--cta {
+  max-width: 100%;
+  margin: 0;
+  padding: 72px 24px;
+}
+
+/* --- Внутреннее устройство блоков. Это уже сделано, трогать не нужно. --- */
+
+.section--hero,
+.section--about {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+.hero__text,
+.about__text {
+  flex: 1;
+}
+
+.hero__media,
+.about__media {
+  width: 40%;
+  height: auto;
+}
+
+.hero__title {
+  margin: 0 0 16px;
+  font-size: var(--fs-1);
+  line-height: 1.1;
+}
+
+.hero__solution {
+  margin: 0 0 8px;
+  font-size: var(--fs-2);
+  line-height: 1.6;
+  color: #5b5148;
+}
+
+.hero__proof {
+  margin: 0 0 24px;
+  font-size: var(--fs-3);
+  line-height: 1.6;
+  color: #8a7f73;
+}
+
+.hero__action,
+.cta__action {
+  display: inline-block;
+  padding: 16px 24px;
+  border-radius: 10px;
+  background: #b3714a;
+  color: #fffdf7;
+  text-decoration: none;
+}
+
+.about__title,
+.services__title,
+.pricing__title,
+.cta__title {
+  margin: 0 0 16px;
+  font-size: var(--fs-1);
+  line-height: 1.1;
+}
+
+.about__lead {
+  margin: 0 0 8px;
+  font-size: var(--fs-2);
+  line-height: 1.6;
+  color: #5b5148;
+}
+
+.about__note {
+  margin: 0;
+  font-size: var(--fs-3);
+  line-height: 1.6;
+  color: #8a7f73;
+}
+
+.services__grid,
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.card,
+.plan {
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card__title,
+.plan__name {
+  margin: 0 0 8px;
+  font-size: var(--fs-2);
+  line-height: 1.3;
+}
+
+.card__text {
+  margin: 0;
+  font-size: var(--fs-3);
+  color: #8a7f73;
+}
+
+.plan__price {
+  margin: 0;
+  font-size: var(--fs-2);
+}
+
+.plan--featured {
+  padding: 40px 32px;
+}
+
+.plan--featured .plan__price {
+  font-size: var(--fs-1);
+  line-height: 1.1;
+}
+
+.section--cta {
+  text-align: center;
+  background: #f0e7d8;
+}
+
+.cta__inner {
+  max-width: 26rem;
+  margin: 0 auto;
+}

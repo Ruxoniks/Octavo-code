@@ -1,0 +1,18 @@
+{
+  "id": "semantics-divs",
+  "chapter": "semantics",
+  "order": 0,
+  "type": "code",
+  "title": "Суп из дивов",
+  "summary": "Страница выглядит как газета и при этом молчит: браузер не знает, где у неё шапка, а где главное.",
+  "difficulty": 2,
+  "estimateMin": 15,
+  "tags": ["семантика", "html"],
+  "requires": ["html-summary"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Менять нужно только имена тегов у трёх обёрток: div class=\"masthead\", div class=\"content\" и div class=\"colophon\". Всё, что внутри, остаётся как есть." },
+    { "level": 2, "text": "Классы не трогай: оформление написано по классам, и без них страница рассыплется. Правильная строка выглядит так: <header class=\"masthead\">. Закрывающий тег тоже нужно поменять." },
+    { "level": 3, "text": "masthead → <header class=\"masthead\"> … </header>, content → <main class=\"content\"> … </main>, colophon → <footer class=\"colophon\"> … </footer>." }
+  ]
+}

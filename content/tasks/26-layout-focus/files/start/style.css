@@ -1,0 +1,45 @@
+/*
+  Блок «Что вы унесёте домой». Картинка есть, но такая маленькая, что глазу
+  не за что зацепиться: взгляд сразу утыкается в текст.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.pitch {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 64px 24px;
+}
+
+.pitch__media {
+  width: 80px;
+  height: auto;
+}
+
+.pitch__text {
+  flex: 1;
+}
+
+.pitch__title {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.pitch__lead {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #5b5148;
+}
+
+.pitch__note {
+  margin: 0;
+  color: #8a7f73;
+}

@@ -15,6 +15,14 @@
 
   var doc = global.document;
 
+  /*
+   * Всё, что скрипт ученика напечатал в консоль, складываем сюда: проверкам
+   * в заданиях про JavaScript нужно смотреть на вывод, а не на текст кода.
+   * Рантайм подставляется в <head> раньше пользовательских скриптов, поэтому
+   * к моменту проверки здесь уже лежит всё, что успело напечататься.
+   */
+  var consoleLog = [];
+
   // ---------- мост с родителем ----------
 
   function send(message) {
@@ -38,7 +46,9 @@
     var original = global.console[level];
     global.console[level] = function () {
       var args = Array.prototype.slice.call(arguments).map(stringifyArg);
-      send({ type: 'octavo:console', level: level, text: args.join(' ') });
+      var text = args.join(' ');
+      consoleLog.push({ level: level, text: text });
+      send({ type: 'octavo:console', level: level, text: text });
       if (original) original.apply(global.console, arguments);
     };
   });
@@ -104,7 +114,10 @@
       .trim();
   }
 
-  function rectOf(el) {
+  function rectOf(target) {
+    // Селектор принимается наравне с элементом: t.rect('.card') раньше молча
+    // возвращал нули, и проверка сравнивала ноль с нулём.
+    var el = typeof target === 'string' ? doc.querySelector(target) : target;
     if (!el || typeof el.getBoundingClientRect !== 'function') {
       return { top: 0, left: 0, right: 0, bottom: 0, width: 0, height: 0 };
     }
@@ -228,9 +241,201 @@
     };
   }
 
+  // ---------- линейка композиции ----------
+
+  /*
+   * Помощники для заданий про раскладку. Всё, что меряет расстояния, работает
+   * только в настоящем браузере: вне его getBoundingClientRect отдаёт нули,
+   * а Range.getClientRects — пустой список. Поэтому проверки, которые сюда
+   * ходят, объявляются через check.browser, а available() честно об этом говорит.
+   */
+
+  function layoutAvailable() {
+    var body = doc.body;
+    if (!body || typeof body.getBoundingClientRect !== 'function') return false;
+    var r = body.getBoundingClientRect();
+    return r.width > 0 || r.height > 0;
+  }
+
+  /**
+   * Строчные боксы текста — по одному на каждую отрисованную строку.
+   * Range отдаёт прямоугольник на каждый кусок инлайна, а не на строку,
+   * поэтому куски, стоящие на одной высоте, склеиваются в одну строку.
+   */
+  function lineBoxes(target) {
+    var el = typeof target === 'string' ? doc.querySelector(target) : target;
+    if (!el || typeof doc.createRange !== 'function') return [];
+
+    var range = doc.createRange();
+    try {
+      range.selectNodeContents(el);
+    } catch (err) {
+      return [];
+    }
+
+    var raw = typeof range.getClientRects === 'function' ? range.getClientRects() : [];
+    var rows = [];
+
+    for (var i = 0; i < raw.length; i++) {
+      var r = raw[i];
+      if (!(r.width > 0.5 && r.height > 0)) continue;
+
+      var key = Math.round(r.top / 2);
+      var row = null;
+      for (var j = 0; j < rows.length; j++) {
+        if (rows[j].key === key) row = rows[j];
+      }
+
+      if (row) {
+        row.left = Math.min(row.left, r.left);
+        row.right = Math.max(row.right, r.right);
+        row.top = Math.min(row.top, r.top);
+      } else {
+        rows.push({ key: key, top: r.top, left: r.left, right: r.right, height: r.height });
+      }
+    }
+
+    return rows
+      .sort(function (a, b) {
+        return a.top - b.top;
+      })
+      .map(function (row) {
+        return {
+          top: row.top,
+          left: row.left,
+          right: row.right,
+          width: row.right - row.left,
+          height: row.height,
+        };
+      });
+  }
+
+  function nodesOf(selector) {
+    return Array.prototype.slice.call(doc.querySelectorAll(selector));
+  }
+
+  /** Видимый левый край: начало первой строки текста, а у картинки — край самой картинки. */
+  function leftEdges(selector) {
+    return nodesOf(selector).map(function (el) {
+      var lines = lineBoxes(el);
+      return lines.length ? lines[0].left : rectOf(el).left;
+    });
+  }
+
+  function spread(numbers) {
+    if (!numbers || !numbers.length) return 0;
+    var min = numbers[0];
+    var max = numbers[0];
+    for (var i = 1; i < numbers.length; i++) {
+      if (numbers[i] < min) min = numbers[i];
+      if (numbers[i] > max) max = numbers[i];
+    }
+    return max - min;
+  }
+
+  /**
+   * Путь читающего глаза: точка в начале каждой строки, в порядке разметки.
+   * Горизонтальные скачки между точками и есть цена композиции — у текста,
+   * выровненного по левому краю, они равны нулю.
+   */
+  function gazePath(selector) {
+    var points = [];
+
+    nodesOf(selector).forEach(function (el) {
+      var lines = lineBoxes(el);
+      if (lines.length) {
+        lines.forEach(function (line) {
+          points.push({ x: line.left, y: line.top, el: el });
+        });
+        return;
+      }
+      var r = rectOf(el);
+      if (r.width > 0 || r.height > 0) points.push({ x: r.left, y: r.top, el: el });
+    });
+
+    var jumps = [];
+    var total = 0;
+    var max = 0;
+
+    for (var i = 1; i < points.length; i++) {
+      var jump = Math.abs(points[i].x - points[i - 1].x);
+      jumps.push(jump);
+      total += jump;
+      if (jump > max) max = jump;
+    }
+
+    return {
+      points: points,
+      jumps: jumps,
+      maxJump: max,
+      meanJump: jumps.length ? total / jumps.length : 0,
+    };
+  }
+
+  /** Какую долю площади контейнера занимает элемент. */
+  function areaShare(target, container) {
+    var inner = rectOf(target);
+    var outer = rectOf(container);
+    var area = outer.width * outer.height;
+    if (!area) return 0;
+    return (inner.width * inner.height) / area;
+  }
+
+  /** Во сколько раз кегль одного элемента крупнее другого. */
+  function fontScale(bigger, smaller) {
+    var big = parseFloat(helpers.style(bigger, 'font-size'));
+    var small = parseFloat(helpers.style(smaller, 'font-size'));
+    if (!big || !small) return 0;
+    return big / small;
+  }
+
+  /**
+   * Межстрочный интервал числом, без единиц.
+   * Браузер отдаёт line-height в пикселях, тестовая среда — как написано,
+   * поэтому перед сравнением всё приводится к отношению к кеглю.
+   */
+  function lineHeightRatio(target) {
+    var raw = helpers.style(target, 'line-height');
+    if (!raw || raw === 'normal') return null;
+    var size = parseFloat(helpers.style(target, 'font-size')) || 16;
+    var value = parseFloat(raw);
+    if (!value) return null;
+    return /px$/.test(raw) ? value / size : value;
+  }
+
+  /**
+   * Сколько колонок в grid-template-columns.
+   * Браузер раскладывает значение в пиксели («212px 212px 212px»), тестовая
+   * среда оставляет как написано («repeat(3, 1fr)») — понимаем обе формы.
+   */
+  function columnCount(value) {
+    var text = String(value || '').trim();
+    if (!text || text === 'none') return 0;
+
+    var repeated = text.match(/^repeat\(\s*(\d+)\s*,/);
+    if (repeated) return parseInt(repeated[1], 10);
+
+    return text.split(/\s+(?![^(]*\))/).filter(Boolean).length;
+  }
+
   var helpers = {
     $: function (selector) {
       return doc.querySelector(selector);
+    },
+    /** Всё, что скрипт напечатал в консоль: [{ level, text }, …]. */
+    logs: function (level) {
+      return consoleLog.filter(function (entry) {
+        return !level || entry.level === level;
+      });
+    },
+    /** Тот же вывод одной строкой — так удобнее искать в нём подстроку. */
+    output: function (level) {
+      return helpers
+        .logs(level)
+        .map(function (entry) {
+          return entry.text;
+        })
+        .join('\n');
     },
     $$: function (selector) {
       return Array.prototype.slice.call(doc.querySelectorAll(selector));
@@ -304,6 +509,20 @@
       return doc.querySelectorAll(selector).length;
     },
     mascot: { canClimb: canClimb, steps: ladderSteps },
+    layout: {
+      available: layoutAvailable,
+      rects: function (selector) {
+        return nodesOf(selector).map(rectOf);
+      },
+      lines: lineBoxes,
+      leftEdges: leftEdges,
+      spread: spread,
+      gaze: gazePath,
+      areaShare: areaShare,
+      fontScale: fontScale,
+      lineHeight: lineHeightRatio,
+      columnCount: columnCount,
+    },
   };
 
   // ---------- запуск проверок ----------
@@ -436,11 +655,42 @@
 
     var width = 28;
     var height = 34;
-    var el = ensureMascot();
     var speed = cfg.speed || 1;
-    var steps = ladderSteps(cfg.target);
     var viewportH = global.innerHeight || 400;
     var viewportW = global.innerWidth || 300;
+
+    /*
+     * Путь взгляда. Идём по строкам в порядке разметки — так, как читает
+     * человек, — а не снизу вверх, как по лесенке. На выровненном по левому
+     * краю тексте курсор падает ровно вниз, на центрированном мечется.
+     *
+     * Точки считаются до того, как появится курсор: если считать нечего
+     * (нет геометрии или не нашлось текста), лучше не показывать стрелку
+     * в углу превью вообще.
+     */
+    if (cfg.mode === 'gaze') {
+      var path = gazePath(cfg.target || 'h1, h2, h3, p, li, blockquote, a, button, img');
+      if (path.points.length < 2) return;
+
+      var reader = ensureMascot();
+      var point = 0;
+      moveTo(reader, path.points[0].x - 6, path.points[0].y - 4);
+
+      activeTimer = setInterval(function () {
+        point++;
+        if (point >= path.points.length) {
+          clearInterval(activeTimer);
+          activeTimer = null;
+          send({ type: 'octavo:mascot-finished' });
+          return;
+        }
+        moveTo(reader, path.points[point].x - 6, path.points[point].y - 4);
+      }, 300 / speed);
+      return;
+    }
+
+    var el = ensureMascot();
+    var steps = ladderSteps(cfg.target);
 
     if (cfg.mode === 'walk' || steps.length === 0) {
       var groundY = viewportH - height - 8;
@@ -494,9 +744,10 @@
     if (!data || typeof data !== 'object') return;
 
     if (data.type === 'octavo:run-checks') {
-      var outcome = runChecks(data.source, {});
-      send({ type: 'octavo:results', runId: data.runId, outcome: outcome });
-      if (outcome.ok && data.mascot) playMascot(data.mascot);
+      // Маскота отсюда не запускаем: решение о запуске принимает родитель,
+      // который один знает итог целиком — вместе с проверками, считающимися
+      // вне песочницы, и с критериями заказчика. Иначе он играл бы дважды.
+      send({ type: 'octavo:results', runId: data.runId, outcome: runChecks(data.source, {}) });
       return;
     }
 
@@ -507,5 +758,26 @@
 
   global.__octavo = { runChecks: runChecks, playMascot: playMascot, helpers: helpers };
 
-  send({ type: 'octavo:ready' });
+  /*
+   * О готовности сообщаем не сразу. Этот скрипт стоит в <head> и выполняется
+   * раньше, чем разобрано тело документа: если ответить «готов» отсюда,
+   * родитель тут же пришлёт проверки, и они измерят страницу, которой ещё
+   * нет — все координаты выйдут нулевыми. Поэтому ждём разбора документа
+   * и одного кадра отрисовки, после которого раскладка уже посчитана.
+   */
+  function announceReady() {
+    // Именно setTimeout, а не requestAnimationFrame: кадры не рисуются, когда
+    // вкладка в фоне, и тогда сигнал не ушёл бы никогда. Один тик очереди
+    // задач достаточен — getBoundingClientRect всё равно считает раскладку
+    // синхронно, ему нужен только разобранный документ.
+    global.setTimeout(function () {
+      send({ type: 'octavo:ready' });
+    }, 0);
+  }
+
+  if (doc.readyState === 'loading') {
+    doc.addEventListener('DOMContentLoaded', announceReady);
+  } else {
+    announceReady();
+  }
 })(typeof window !== 'undefined' ? window : this);

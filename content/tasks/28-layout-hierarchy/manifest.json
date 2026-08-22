@@ -1,0 +1,18 @@
+{
+  "id": "layout-hierarchy",
+  "chapter": "layout",
+  "order": 5,
+  "type": "code",
+  "title": "Иерархия и контраст масштаба",
+  "summary": "Глаз решает, что читать первым, ещё до чтения. Решает он по размеру — и разница должна быть заметной.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["композиция", "типографика"],
+  "requires": ["layout-grid"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Посчитай отношение: 18 разделить на 15 — это 1.2. Нужно хотя бы 2.5. Заголовок должен вырасти в разы, а не на пару пикселей." },
+    { "level": 2, "text": "Объяви три размера в :root через rem: крупный, средний и основной. Ниже по файлу подставляй их через var(). Заодно задай заголовку плотный line-height." },
+    { "level": 3, "text": ":root { --fs-1: 2.75rem; --fs-2: 1.25rem; --fs-3: 1rem; --lh-tight: 1.1; --lh-text: 1.6; } .intake__title { font-size: var(--fs-1); line-height: var(--lh-tight); }" }
+  ]
+}

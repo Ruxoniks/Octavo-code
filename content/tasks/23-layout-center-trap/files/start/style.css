@@ -1,0 +1,49 @@
+/*
+  Оформление первого экрана. Всё выровнено по центру — так делают по привычке,
+  и на первый взгляд это выглядит опрятно.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.hero {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.hero__title {
+  font-size: 34px;
+  margin: 0 0 16px;
+}
+
+.hero__lead {
+  font-size: 18px;
+  margin: 0 0 12px;
+  color: #5b5148;
+}
+
+.hero__note {
+  margin: 0 0 24px;
+  color: #8a7f73;
+}
+
+.hero__action {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 10px;
+  background: #b3714a;
+  color: #fffdf7;
+  text-decoration: none;
+}
+
+.hero__media {
+  display: block;
+  width: 180px;
+  margin: 32px auto 0;
+}

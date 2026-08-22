@@ -1,0 +1,21 @@
+{
+  "id": "layout-center-trap",
+  "chapter": "layout",
+  "order": 0,
+  "type": "code",
+  "title": "Ловушка центра",
+  "summary": "Выровнять всё по центру — первое, что приходит в голову. И самое дорогое решение на странице.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["композиция", "выравнивание"],
+  "requires": ["css-summary"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "preview": {
+    "mascot": { "mode": "gaze", "target": ".hero__title, .hero__lead, .hero__note, .hero__action" }
+  },
+  "hints": [
+    { "level": 1, "text": "Центрирование держится на двух строках: text-align: center у .hero и margin: 0 auto у картинки. Начни с того, что уберёшь первую." },
+    { "level": 2, "text": "Чтобы текст и картинка встали рядом, .hero нужен display: flex и gap. Текстовой колонке дай flex: 1, чтобы она забрала свободное место." },
+    { "level": 3, "text": ".hero { display: flex; align-items: center; gap: 48px; max-width: 960px; margin: 0 auto; padding: 64px 24px; } .hero__text { flex: 1; text-align: left; } .hero__media { width: 38%; }" }
+  ]
+}

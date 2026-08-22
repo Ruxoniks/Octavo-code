@@ -1,4 +1,4 @@
-import type { CheckResult, CheckRun, ResolvedTask } from '../core/types';
+import type { CheckResult, CheckRun, MascotConfig, ResolvedTask } from '../core/types';
 import { getClient, tasks } from '../core/registry';
 import { clearDraft, getTaskProgress, isDone, markAttempt, markDone, saveDraft } from '../core/progress';
 import { navigate } from '../core/router';
@@ -129,7 +129,7 @@ export function renderTaskView(task: ResolvedTask): HTMLElement {
     if (lastRun.ok) {
       markDone(id);
       renderFooter();
-      if (task.preview.mascot && task.preview.mascot.mode !== 'off') preview.playMascot(task.preview.mascot);
+      if (task.preview.mascot && task.preview.mascot.mode !== 'off') void preview.playMascot(task.preview.mascot);
     }
 
     checkButton.disabled = false;
@@ -145,6 +145,15 @@ export function renderTaskView(task: ResolvedTask): HTMLElement {
     append(footer, [
       checkButton,
       el('button', { text: t('task.run'), on: { click: () => context.requestPreview() } }),
+      // Маскот сам по себе запускается только на успехе. В заданиях про
+      // композицию смотреть надо как раз на сломанный путь взгляда, поэтому
+      // его можно пустить в любой момент.
+      task.preview.mascot && task.preview.mascot.mode !== 'off'
+        ? el('button', {
+            text: task.preview.mascot.mode === 'gaze' ? t('task.gaze') : t('task.mascot'),
+            on: { click: () => void preview.playMascot(task.preview.mascot as MascotConfig) },
+          })
+        : null,
       // Итоговые задания главы человек пишет сам — там кнопки нейросети нет.
       task.manifest.allowAi === false
         ? null

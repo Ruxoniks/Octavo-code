@@ -1,0 +1,21 @@
+{
+  "id": "layout-hero",
+  "chapter": "layout",
+  "order": 7,
+  "type": "code",
+  "title": "Первый экран",
+  "summary": "Всё, чему научила глава, в одном блоке: порядок, струна, поля, точка притяжения и масштаб.",
+  "difficulty": 4,
+  "estimateMin": 30,
+  "tags": ["композиция", "блок"],
+  "requires": ["layout-order"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "style.css" },
+  "preview": {
+    "mascot": { "mode": "gaze", "target": ".hero__title, .hero__solution, .hero__proof, .hero__action" }
+  },
+  "hints": [
+    { "level": 1, "text": "Сначала разберись с разметкой: четыре блока текста лежат не в том порядке. Переставь их так, как человек читает. Только потом берись за стили." },
+    { "level": 2, "text": "Дальше по порядку: две колонки на flex, шкала размеров в :root, все отступы кратны восьми, картинке — доля ширины, а не пиксели." },
+    { "level": 3, "text": "Порядок: заголовок, как это устроено, доказательства, кнопка. Стили: .hero { display: flex; align-items: flex-start; gap: 48px; max-width: 960px; margin: 0 auto; padding: 64px 24px; } .hero__title { font-size: 2.75rem; line-height: 1.1; } .hero__media { width: 40%; }" }
+  ]
+}

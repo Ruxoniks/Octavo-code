@@ -1,0 +1,76 @@
+/*
+  Одно из возможных решений. Все семь правил главы сразу: точка притяжения
+  справа, единая струна слева, поля больше внутренних интервалов, шкала
+  размеров с контрастом больше 2.5 и ритм, кратный восьми.
+*/
+:root {
+  --fs-1: 2.75rem;
+  --fs-2: 1.25rem;
+  --fs-3: 1rem;
+
+  --sp-1: 8px;
+  --sp-2: 16px;
+  --sp-3: 24px;
+  --sp-4: 48px;
+  --sp-5: 64px;
+
+  --ink: #2f2a26;
+  --muted: #5b5148;
+  --faint: #8a7f73;
+  --accent: #b3714a;
+  --paper: #fffdf7;
+}
+
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--sp-5) var(--sp-3);
+}
+
+.hero__text {
+  flex: 1;
+}
+
+.hero__title {
+  margin: 0 0 var(--sp-2);
+  font-size: var(--fs-1);
+  line-height: 1.1;
+}
+
+.hero__solution {
+  margin: 0 0 var(--sp-1);
+  font-size: var(--fs-2);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.hero__proof {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-3);
+  line-height: 1.6;
+  color: var(--faint);
+}
+
+.hero__action {
+  display: inline-block;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--accent);
+  color: var(--paper);
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+.hero__media {
+  width: 40%;
+  height: auto;
+}

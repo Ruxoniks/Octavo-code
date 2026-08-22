@@ -1,0 +1,18 @@
+{
+  "id": "layout-cta",
+  "chapter": "layout",
+  "order": 10,
+  "type": "code",
+  "title": "Финальный экран",
+  "summary": "Единственное место на странице, где центральная композиция — правильный ответ. Разбираемся почему.",
+  "difficulty": 3,
+  "estimateMin": 20,
+  "tags": ["композиция", "блок"],
+  "requires": ["layout-pricing"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Да, здесь действительно нужен text-align: center — впервые за всю главу. Разберись почему: сколько строк человеку предстоит прочитать на этом экране?" },
+    { "level": 2, "text": "Центрировать текст мало: содержимому нужна небольшая ширина через max-width и margin: 0 auto, иначе строки снова разъедутся. И полей сверху с запасом." },
+    { "level": 3, "text": ".cta { padding: 96px 24px; text-align: center; } .cta__inner { max-width: 26rem; margin: 0 auto; } .cta__note { margin: 0 0 32px; }" }
+  ]
+}

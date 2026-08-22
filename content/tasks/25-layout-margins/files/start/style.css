@@ -1,0 +1,27 @@
+/*
+  Отзыв. Текст прижат к краям блока, а между самим отзывом и подписью —
+  пропасть. Пространство здесь есть, но оно разложено наоборот.
+*/
+body {
+  margin: 0;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.quote {
+  padding: 0;
+  background: #fffdf7;
+  border: 1px solid #e4d9c6;
+}
+
+.quote__text {
+  margin: 0 0 56px;
+  font-size: 20px;
+}
+
+.quote__author {
+  margin: 0;
+  color: #8a7f73;
+}

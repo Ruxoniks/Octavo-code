@@ -1,0 +1,18 @@
+{
+  "id": "layout-pricing",
+  "chapter": "layout",
+  "order": 9,
+  "type": "code",
+  "title": "Цены: выделить главное среди равных",
+  "summary": "Три одинаковых по устройству карточки, из которых одна должна побеждать. Заливка ярким цветом — не ответ.",
+  "difficulty": 4,
+  "estimateMin": 25,
+  "tags": ["композиция", "блок", "акцент"],
+  "requires": ["layout-about"],
+  "editor": { "files": ["style.css", "index.html"], "primary": "style.css" },
+  "hints": [
+    { "level": 1, "text": "Убери у .plan--featured заливку и цвет текста целиком. Дальше выделяй тем, что осталось: полями и кеглем." },
+    { "level": 2, "text": "Дай выделенной карточке заметно большие поля, а её цене — заметно больший размер. «Заметно» здесь примерно вдвое и в полтора раза соответственно." },
+    { "level": 3, "text": ".plan--featured { padding: 48px 32px; } .plan--featured .plan__price { font-size: 2.25rem; line-height: 1.1; } Правила с background и color из .plan--featured удали." }
+  ]
+}

@@ -196,3 +196,85 @@ describe('ссылки в превью', () => {
     expect(result.prevented).toBe(false);
   });
 });
+
+describe('линейка композиции', () => {
+  async function withRuntime<T>(markup: string, fn: (layout: LayoutHelpers) => T): Promise<T> {
+    const window = new Window({ url: 'https://octavo.local/' });
+    window.document.write(buildSrcDoc({ 'index.html': markup }, 'index.html'));
+    window.document.close();
+    await window.happyDOM.waitUntilComplete();
+
+    const runtime = (window as unknown as { __octavo: { helpers: { layout: LayoutHelpers } } }).__octavo;
+    const result = fn(runtime.helpers.layout);
+    await window.happyDOM.close();
+    return result;
+  }
+
+  interface LayoutHelpers {
+    available: () => boolean;
+    lines: (target: string) => unknown[];
+    leftEdges: (selector: string) => number[];
+    spread: (numbers: number[]) => number;
+    gaze: (selector: string) => { points: unknown[]; jumps: number[]; maxJump: number; meanJump: number };
+    fontScale: (a: string, b: string) => number;
+    lineHeight: (target: string) => number | null;
+    columnCount: (value: string) => number;
+  }
+
+  const page = (body: string, style = ''): string =>
+    `<!doctype html><html><head><style>${style}</style></head><body>${body}</body></html>`;
+
+  it('разброс считается по краям набора', async () => {
+    const spread = await withRuntime(page('<p>текст</p>'), (layout) => layout.spread([24, 40, 24, 8]));
+    expect(spread).toBe(32);
+  });
+
+  it('пустой набор разброса не имеет', async () => {
+    expect(await withRuntime(page('<p>текст</p>'), (layout) => layout.spread([]))).toBe(0);
+  });
+
+  // Вне браузера геометрии нет вовсе: Range отдаёт пустой список, а не нули,
+  // поэтому проверки, которые сюда ходят, обязаны быть check.browser.
+  it('вне браузера линейка честно говорит, что мерить нечем', async () => {
+    const report = await withRuntime(page('<h1>Заголовок</h1><p>Текст подлиннее</p>'), (layout) => ({
+      available: layout.available(),
+      lines: layout.lines('h1').length,
+      gazePoints: layout.gaze('h1, p').points.length,
+    }));
+
+    expect(report.available).toBe(false);
+    expect(report.lines).toBe(0);
+    expect(report.gazePoints).toBe(0);
+  });
+
+  it('контраст масштаба считается и без раскладки', async () => {
+    const scale = await withRuntime(
+      page('<h1>Заголовок</h1><p>Текст</p>', 'h1{font-size:40px}p{font-size:16px}'),
+      (layout) => layout.fontScale('h1', 'p'),
+    );
+    expect(scale).toBe(2.5);
+  });
+
+  it('межстрочный интервал приводится к отношению в любой среде', async () => {
+    const report = await withRuntime(
+      page('<h1>А</h1><p>Б</p>', 'h1{font-size:40px;line-height:1.1}p{font-size:16px;line-height:32px}'),
+      (layout) => ({ heading: layout.lineHeight('h1'), text: layout.lineHeight('p') }),
+    );
+
+    expect(report.heading).toBeCloseTo(1.1, 5);
+    // 32px при кегле 16px — это ровно два интервала.
+    expect(report.text).toBeCloseTo(2, 5);
+  });
+
+  it('колонки сетки считаются и в авторской записи, и в разложенной', async () => {
+    const counts = await withRuntime(page('<div></div>'), (layout) => [
+      layout.columnCount('repeat(3, 1fr)'),
+      layout.columnCount('212px 212px 212px'),
+      layout.columnCount('minmax(120px, 1fr) 2fr'),
+      layout.columnCount('none'),
+      layout.columnCount(''),
+    ]);
+
+    expect(counts).toEqual([3, 3, 2, 0, 0]);
+  });
+});

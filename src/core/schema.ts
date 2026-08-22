@@ -13,14 +13,14 @@ const hint = z.object({
 const question = z.object({
   id: z.string().min(1),
   prompt: z.string().min(3),
-  kind: z.enum(['line', 'choice']),
+  kind: z.literal('choice'),
   options: z.array(z.string()).optional(),
   answer: z.number().int().min(0),
   explain: z.string().min(3),
 });
 
 const mascotConfig = z.object({
-  mode: z.enum(['ladder', 'walk', 'off']),
+  mode: z.enum(['ladder', 'walk', 'gaze', 'off']),
   target: z.string().optional(),
   maxRise: z.number().optional(),
   maxGap: z.number().optional(),

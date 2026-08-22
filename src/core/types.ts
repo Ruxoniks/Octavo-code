@@ -25,9 +25,12 @@ export interface EditorConfig {
 }
 
 export interface MascotConfig {
-  /** ladder — курсор поднимается по ступенькам; walk — едет по земле; off — не показывать. */
-  mode: 'ladder' | 'walk' | 'off';
-  /** CSS-селектор ступенек. */
+  /**
+   * ladder — курсор поднимается по ступенькам; walk — едет по земле;
+   * gaze — проходит путь читающего глаза по строкам; off — не показывать.
+   */
+  mode: 'ladder' | 'walk' | 'gaze' | 'off';
+  /** CSS-селектор ступенек, а для gaze — элементов, которые читает глаз. */
   target?: string;
   /** Максимальная высота прыжка в пикселях. */
   maxRise?: number;
@@ -73,10 +76,10 @@ export interface DndConfig {
 export interface Question {
   id: string;
   prompt: string;
-  /** line — выбрать строку в коде; choice — выбрать вариант ответа. */
-  kind: 'line' | 'choice';
+  /** Вариант ответа — единственный вид вопроса: выбрать один из предложенных. */
+  kind: 'choice';
   options?: string[];
-  /** Для kind=line — номер строки (с 1); для kind=choice — индекс варианта. */
+  /** Индекс верного варианта в options. */
   answer: number;
   explain: string;
 }

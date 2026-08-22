@@ -21,7 +21,7 @@ export function createReadRunner(context: RunnerContext): Runner {
     el(
       'div',
       { class: 'editor__host' },
-      renderCodeView(source, (line) => questions.setLine(line)),
+      renderCodeView(source),
     ),
     el(
       'div',
