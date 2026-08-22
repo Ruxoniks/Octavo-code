@@ -1,0 +1,122 @@
+/*
+  Оформление написано заранее и держится на смысловых тегах — как в разделе
+  про HTML. Если структура выбрана верно, страница соберётся сама.
+*/
+body {
+  margin: 0;
+  padding: 40px 24px;
+  background: #faf6ef;
+  color: #2f2a26;
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.65;
+}
+
+header,
+main,
+footer {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+header {
+  padding-bottom: 14px;
+  margin-bottom: 28px;
+  border-bottom: 3px double #8d5433;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+nav {
+  margin-top: 12px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+nav a {
+  margin-right: 16px;
+  color: #8d5433;
+  text-decoration: none;
+  border-bottom: 1px solid #e4d9c6;
+}
+
+nav a:hover {
+  border-bottom-color: #8d5433;
+}
+
+article h2 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+article img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 16px 0;
+  border-radius: 10px;
+}
+
+article p {
+  margin: 0 0 14px;
+  font-size: 17px;
+}
+
+article a {
+  color: #8d5433;
+}
+
+aside {
+  margin: 28px 0;
+  padding: 16px 20px;
+  background: #fffdf7;
+  border-left: 4px solid #8d5433;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+aside h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+aside p {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+
+section.note {
+  margin: 28px 0;
+  padding: 16px 20px;
+  background: #f0e7d8;
+  border-radius: 10px;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+section.note h2 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8d5433;
+}
+
+section.note p {
+  margin: 0;
+}
+
+footer {
+  margin-top: 32px;
+  padding-top: 14px;
+  border-top: 1px solid #e4d9c6;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  color: #8a7f73;
+}

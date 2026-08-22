@@ -1,0 +1,18 @@
+{
+  "id": "semantics-from-brief",
+  "chapter": "semantics",
+  "order": 4,
+  "type": "code",
+  "title": "Статья по описанию",
+  "summary": "Редактор описал материал словами — ни одного тега в его описании нет. Собрать страницу тегами со смыслом придётся самому.",
+  "difficulty": 3,
+  "estimateMin": 25,
+  "tags": ["семантика", "структура"],
+  "requires": ["semantics-nav-aside"],
+  "editor": { "files": ["index.html", "style.css"], "primary": "index.html" },
+  "hints": [
+    { "level": 1, "text": "Начни с трёх опор страницы: header, main, footer. Дальше внутри main — три разных смысла, значит три разных тега: сама статья, врезка с цифрами и примечание редакции." },
+    { "level": 2, "text": "Статья — самостоятельный материал, значит article. Врезка связана с темой лишь косвенно — aside. Примечание редакции существует только на этой странице этой газеты — section." },
+    { "level": 3, "text": "header с h1 «Восьмая полоса» и nav из трёх ссылок; main с article (h2, img с alt, четыре p, один из них со ссылкой target=\"_blank\"), aside с цифрами и section.note с примечанием; footer с адресом." }
+  ]
+}

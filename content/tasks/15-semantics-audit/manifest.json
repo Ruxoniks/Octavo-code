@@ -1,0 +1,39 @@
+{
+  "id": "semantics-audit",
+  "chapter": "semantics",
+  "order": 7,
+  "type": "code",
+  "title": "Почини страницу от нейросети",
+  "summary": "Полоса открывается, выглядит опрятно и ошибок не даёт. Внутри — шесть смысловых поломок, и чинить их тебе.",
+  "difficulty": 4,
+  "estimateMin": 30,
+  "tags": [
+    "семантика",
+    "разбор"
+  ],
+  "requires": [
+    "semantics-schedule"
+  ],
+  "allowAi": false,
+  "editor": {
+    "files": [
+      "index.html",
+      "style.css"
+    ],
+    "primary": "index.html"
+  },
+  "hints": [
+    {
+      "level": 1,
+      "text": "Иди по списку из брифа сверху вниз и после каждой правки жми «Проверить»: так видно, что именно уже сошлось. Оформление держится на классах — их не трогай, меняются только теги и атрибуты."
+    },
+    {
+      "level": 2,
+      "text": "Со вторым <main> придётся повозиться: его не удаляют целиком, а превращают в раздел внутри первого. Закрывающий </main> после новостей нужно убрать, а расписание завернуть в <section class=\"strip\" id=\"raspisanie\">."
+    },
+    {
+      "level": 3,
+      "text": "По пунктам: <div class=\"nav\"> → <nav class=\"nav\">; обе <section class=\"note\"> → <article class=\"note\">; из подвала убрать обёртку <header class=\"colophon__head\">, оставив текст; в таблице добавить <caption>, <thead> с <th scope=\"col\"> и <tbody>, где название станции — <th scope=\"row\">; у дат поставить datetime=\"2026-08-18\" и datetime=\"2026-08-16\"."
+    }
+  ]
+}
